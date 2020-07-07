@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  timeout: 5000
+  host: db
+  username: postgres
+  password: 
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: tkmoto2_dev
+
+test:
+  <<: *default
+  database: tkmoto2_test
+
+production:
+  <<: *default
+  database: tkmoto2_prod
+  # username: tkmoto2
+  # password: <%= ENV['TKMOTO2_DATABASE_PASSWORD'] %>
