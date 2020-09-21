@@ -2,16 +2,12 @@
 
 <html>
   <head>
-    <style type="text/css">
-    </style>
-
-
-    <link rel="shortcut icon" href="<%= asset_path 'favicon.ico' %>"" type="image/x-icon">
+    <link rel="shortcut icon" href="<%= asset_path 'favicon.ico' %>" type="image/x-icon">
     <title>TKMoto</title>
     <%= csrf_meta_tags %>
-
-  
-
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>  
   </head>
 
   <body>
@@ -19,16 +15,9 @@
     <%= render 'layouts/header' %>
 
     <div class="container-fluid">
-
-      <% flash.each do |key, value| %>
-        <%= content_tag(:div, value, class: "alert alert-#{key}") %>
-      <% end %>
-
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <%= render partial: 'layouts/flash', flash: flash %> 
 
       <%= yield %>
-
 
       <hr/>
       <%= debug(params) if Rails.env.development? %>    
