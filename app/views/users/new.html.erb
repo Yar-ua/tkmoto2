@@ -1,0 +1,66 @@
+<h1>Регистрация</h1>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger" role="alert">
+  	    <h3>
+          <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+           Ошибка:
+        </h3>
+            </div>
+        <ul>
+          <% @user.errors.each do |attribute, error| %>
+            <li color="red"><%= error %></li>
+          <% end %>
+        </ul>
+  <% end %>
+
+
+<div class="row>" id="signup">
+  <div class="span6 offset3">
+    <%= form_for(@user) do |f| %>
+    
+      <div class="row">
+        <div class="col-md-2">
+          <%= f.label :name, "Логин" %>
+        </div>
+        <div class="col-md-2">
+          <%= f.text_field :name %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2">
+          <%= f.label :email, "Ваш email" %>
+        </div>
+        <div class="col-md-2">
+          <%= f.text_field :email %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2">
+          <%= f.label :password, "Пароль" %>
+        </div>
+        * 6 символов минимум
+        <div class="col-md-2">
+          <%= f.password_field :password %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2">
+          <%= f.label :password_confirmation, "Подтверждение пароля" %>
+        </div>
+        <div class="col-md-2">
+          <%= f.password_field :password_confirmation %>
+        </div>
+      </div>
+
+      <div class="action">
+        <%= f.submit "Создать аккаунт", class: "btn btn-large btn-primary" %>
+      </div>
+
+    <% end %>
+
+  </div>
+</div>

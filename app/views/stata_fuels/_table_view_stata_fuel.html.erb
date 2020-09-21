@@ -1,0 +1,45 @@
+<table class="table table-responsive">
+      <thead>
+      <tr>
+        <th>Одометр, км</th>
+        <th>Пробег, км</th>
+        <th>Заправлено, л</th>
+        <th>Стоимость топлива, грн</th>
+        <th>Заправка</th>
+        <th>Марка бенза</th>
+        <th>л на 100 км</th>
+        <th>л на 1 км</th>
+        <th>км на 1 л</th>
+        <th>км за 1 грн</th>
+        <th>грн за 1 км</th>
+        <th>Управление</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @view_stata_fuel.each do |fuel_stata| %>
+        <tr>
+          <td><%= fuel_stata.odo %></td>
+          <td><%= fuel_stata.odo_delta %></td>
+          <td><%= fuel_stata.refueling %></td>
+          <td><%= fuel_stata.price_fuel %></td>
+          <td><%= fuel_stata.fuel_station %></td>
+          <td><%= fuel_stata.fuel_type %></td> 
+
+          <td><%= (fuel_stata.refueling / (fuel_stata.odo_delta / 100)).round(2)  %></td>
+          <td><%= (fuel_stata.refueling / fuel_stata.odo_delta).round(2) %></td>
+          <td><%= (fuel_stata.odo_delta / fuel_stata.refueling).round(2) %></td>
+          <td><%= (fuel_stata.odo_delta / fuel_stata.price_fuel).round(2) %></td>
+          <td><%= (fuel_stata.price_fuel / fuel_stata.odo_delta).round(2) %></td>
+          <td>
+            <div class="btn-group-vertical" role="group" aria-label="...">
+              <%= link_to 'Редактировать', edit_bike_stata_fuel_path(id: fuel_stata.id), class: "btn btn-default btn-sm" %>
+              <%= link_to 'Удалить', bike_stata_fuel_path(id: fuel_stata.id), class: "btn btn-danger btn-sm", 
+                                  method: :delete, 
+                                  data: { confirm: 'Уверен что хочешь удалить запись?' } %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

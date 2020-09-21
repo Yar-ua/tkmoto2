@@ -1,0 +1,66 @@
+<%= form_for :stata_fuel, url: bike_stata_fuels_path, method: :post do |f| %>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.label :odo, 'Показания одометра, км ' %>
+      </div>
+      <div class="col-md-6">
+        <%= f.text_field :odo %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.label :odo_delta, 'Пробег, км * ' %>
+      </div>
+      <div class="col-md-6">
+        <%= f.text_field :odo_delta %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.label :refueling, 'Объем заправленного топлива, л * ' %>
+      </div>
+      <div class="col-md-6">
+        <%= f.text_field :refueling %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.label :price_fuel, 'Стоимость заправл. топлива, грн * ' %>
+      </div>
+      <div class="col-md-6">
+        <%= f.text_field :price_fuel %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.label :fuel_station, 'Название заправки ' %>
+      </div>
+      <div class="col-md-6">
+        <%= f.text_field :fuel_station %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.label :fuel_type, 'Марка бензина ' %>
+      </div>
+      <div class="col-md-6">
+        <%= f.text_field :fuel_type %>
+      </div>
+    </div>
+
+    <div>* - поля, обязательные для заполнения</div>
+    <br/>
+
+    <div class="actions">
+      <%= f.submit 'Сохранить', class: "btn btn-success btn-sm" %> |
+      <%= link_to 'Назад', bikes_path, class: "btn btn-default btn-sm" %>
+    </div>
+
+
+<% end %>

@@ -1,0 +1,111 @@
+<div id='refuelingChart'></div>
+<div id='priceChart'></div>
+<div id='odoDeltaChart'></div>
+
+
+<script>
+
+  var refuelingChartConfig = {  
+      type: "area",
+      title: {
+        text: "Кол-во заправляемого топлива, л",
+      },
+      "scale-y":{
+        "label":{"text":"литры"}
+      },
+      series:[ { values: <%= JSON.parse(@json_stata_refueling) %> } ]
+    };
+
+  var priceChartConfig = {
+      type: "bar3d",
+      title: {
+        text: "Стоимость заправки, грн"
+      },
+      "scale-y":{
+        "label":{"text":"грн"}
+      }, 
+      "series":[ { values: <%= JSON.parse(@json_stata_price_fuel) %> } ]
+    };
+
+  var odoDeltaChartConfig = {
+      backgroundColor : "#fff",
+      globals : {
+        shadow : false,
+        fontFamily : "Helvetica"
+        },
+  
+      type: "area", 
+      title :{
+        text : "Пробег между заправками, км",
+        fontColor : "#5f5f5f",
+        backgroundColor : "transparent",
+        textAlign : "left",
+        padding: "15px 15px",
+        fontSize : "20px"
+        },
+
+
+      scaleY : {
+        label:{"text":"км"},
+        lineColor : "#5f5f5f",
+        lineWidth : "1px",
+        tick : {
+          lineColor : "#5f5f5f",
+          lineWidth : "1px"
+          },
+      guide : {
+        lineStyle : "solid",
+        lineColor : "#626262"
+        },
+      item : {
+        fontColor : "#5f5f5f"
+        },
+      },
+      tooltip : {
+        visible : false
+        },
+      
+      plot : {
+        "contour-on-top":false,
+         alphaArea : 1,
+         lineWidth : "2px",
+         aspect : "spline",
+         marker : { visible : false },
+      
+    },
+    series : [
+      {
+        values: <%= JSON.parse(@json_stata_odo_delta) %>,
+        backgroundColor1: "#E84F28",
+        backgroundColor2: "#E84F28",
+        lineColor : "#E84F28"
+        },
+        ]
+      };
+  
+
+  window.onload=function(){
+
+    zingchart.render({
+      id:'refuelingChart',
+      data: refuelingChartConfig,
+      height: 400,
+      width: "70%"
+    }),
+
+    zingchart.render({
+      id:'priceChart',
+      data: priceChartConfig,
+      height: 400,
+      width: "70%"
+    }),
+
+    zingchart.render({
+      id:'odoDeltaChart',
+      data: odoDeltaChartConfig,
+      height: 400,
+      width: "70%"
+    })
+  };
+
+</script>

@@ -1,0 +1,28 @@
+<h1>Выполните вход</h1>
+
+<div class="span6 offset3">
+  <%= form_for(:session, url: sessions_path) do |f| %>
+
+    <div class="row">
+      <div class="col-md-2">
+        <%= f.label :email, "Ваш email" %>
+      </div>
+      <div class="col-md-2">
+        <%= f.text_field :email %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        <%= f.label :password, "Пароль" %>
+      </div>
+      <div class="col-md-2">
+        <%= f.password_field :password %>
+      </div>
+    </div>
+
+    <%= f.submit "Вход", class: "btn btn-large btn-primary" %>
+  <% end %>
+
+  <p>Новый пользователь? <%= link_to "Регистрация!", signup_path %></p>
+</div>
