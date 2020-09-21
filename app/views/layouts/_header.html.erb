@@ -12,8 +12,8 @@
 
     <div class="collapse navbar-collapse navbar-inverse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li <%= "class=active" if current_page?('/home/start') %> ><%= link_to "Главная", home_start_path %></li>
-        <li <%= "class=active" if current_page?('/home/about') %>><%= link_to "О проекте", home_about_path %></li>
+        <li <%= "class=active" if current_page?('/home/start') %> ><%= link_to "Главная", root_path %></li>
+        <li <%= "class=active" if current_page?('/home/about') %>><%= link_to "О проекте", about_path %></li>
         <li <%= "class=active" if current_page?('/bikes') %>><%= link_to "Мото Статистика", bikes_path %></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Сравнение<span class="caret"></span></a>
@@ -21,36 +21,32 @@
             <li><a href="#">по топливу</a></li>
             <li><a href="#">по ремонту</a></li>
             <li><a href="#">по пробегу</a></li>
-            <li><a href="#">по местам посещения</a></li>
-            <li><a href="#">вероятные отказы</a></li>
           </ul>
         </li>
       </ul>
       
-      <% if signed_in? %>
         <ul class="nav navbar-nav navbar-right">  
           <li class="dropdown">
             <a id="log-in_username_style" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <%= @current_user.name %>
+              %= @current_user.name %
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-            <li><%= link_to "Профиль", user_path(current_user) %></li>
-            <li><%= link_to "Настройки", edit_user_path(current_user) %></li>
-            <li><%= link_to "Все участники", users_path %></li>
+            <li><%= link_to "Профиль", root_path %></li>
+            <li><%= link_to "Настройки", root_path %></li>
+            <li><%= link_to "Все участники", root_path %></li>
             <li role="separator" class="divider"></li>
-            <li><%= link_to "Выйти", signout_path, method: :delete %></li>
+            <li><%= link_to "Выйти", root_path, method: :delete %></li>
           </li>
         </ul>
 
-      <% else %>
         <ul class="nav navbar-nav navbar-right">
           <div class="btn-group" role="group" aria-label="...">
-            <%= link_to "Вход", signin_path, class: "btn btn-small btn-primary" %>
-            <%= link_to "Регистрация", signup_path, class: "btn btn-small btn-success" %>
+            <%= link_to "Вход", root_path, class: "btn btn-small btn-primary" %>
+            <%= link_to "Регистрация", root_path, class: "btn btn-small btn-success" %>
           </div>
         </ul>
-      <% end %>
+
       </div>
 
 </nav>
