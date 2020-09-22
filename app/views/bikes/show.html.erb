@@ -1,25 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Модель:</strong>
+  <strong>Model:</strong>
   <%= @bike.name %>
 </p>
 
 <p>
-  <strong>Владелец:</strong>
-  <%= @bike.user_name %>
-</p>
-
-<p>
-  <strong>Год выпуска:</strong>
+  <strong>Year:</strong>
   <%= @bike.year %>
 </p>
 
 <p>
-  <strong>Цвет:</strong>
+  <strong>Color:</strong>
   <%= @bike.color %>
 </p>
 
 
-<%= link_to 'Редактировать', edit_bike_path(@bike), class: "btn btn-default btn-sm" %> |
-<%= link_to 'Назад', bikes_path, class: "btn btn-default btn-sm" %>
+<%= link_to 'Edit', edit_bike_path(@bike), class: "btn btn-default btn-sm" %> |
+<%= link_to 'Back', bikes_path, class: "btn btn-default btn-sm" %>

@@ -18,27 +18,40 @@ class BikesController < ApplicationController
 
   # GET /bikes/1/edit
   def edit
-    # in function set_bike we find hash by command: @bike = Bike.find(params[:id])
   end
 
 
   # POST /bikes
   def create
     @bike = Bike.new(bike_params)
+    respond_to do |format|
       if @bike.save
-        redirect_to bikes_path
+        format.html { 
+          flash[:success] = 'Bike was successfully created'
+          redirect_to bikes_path 
+        }
+        format.json { render :show, status: :created, location: @bike }
       else
-        render 'new'
+        format.html { render :new }
+        format.json { render json: @bike.errors, status: :unprocessable_entity }
       end
+    end
   end
 
 
   # PATCH/PUT /bikes/1
   def update
-    if @bike.update(bike_params)
-      redirect_to bikes_path
-    else
-      render 'edit'
+    respond_to do |format|
+      if @bike.update(bike_params)
+        format.html { 
+          flash[:success] = 'Bike was successfully updated'
+          redirect_to bikes_path 
+        }
+        format.json { render :show, status: :ok, location: @bike }
+      else
+        format.html { render 'edit' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -46,17 +59,22 @@ class BikesController < ApplicationController
   # DELETE /bikes/1.json
   def destroy
     @bike.destroy
-    redirect_to bikes_path
+    respond_to do |format|
+      format.html { 
+        flash[:success] = 'Bike was successfully deleted'
+        redirect_to bikes_url
+        }
+      format.json { head :no_content }
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_bike
       @bike = Bike.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def bike_params
-      params.require(:bike).permit(:name, :user_name, :year, :color)
+      params.require(:bike).permit(:name, :year, :color)
     end
 end
