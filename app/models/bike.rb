@@ -5,10 +5,11 @@ class Bike < ApplicationRecord
   validates_associated :stata_repairs
 
   validates	:name,  presence: true, 
-                    length: { maximum: 30, message: "enter bike model - 30 symbols max" }
-  validates :year,  numericality: { only_integer: true, message: "year must be digit" }, 
-                    length: { maximum: 4, message: "enter bike year, must be not longer than 4 digits" }
+                    length: { maximum: 50 }
+  validates :year,  presence: true, 
+                    length: { maximum: 4 },
+                    numericality: { only_integer: true }
   validates	:color, presence: true, 
-                    length: { maximum: 30, message: "enter bike color, 30 symbols max" }
+                    length: { maximum: 50 }
 	
 end

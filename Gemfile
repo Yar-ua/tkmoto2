@@ -60,3 +60,5 @@ gem 'font-awesome-sass', '~> 5.13.0'
 # for fixing error with old Node versions:
 # 'Autoprefixer doesn’t support Node v8.10.0. Update it.'
 gem 'mini_racer'
+
+gem 'simple_form'

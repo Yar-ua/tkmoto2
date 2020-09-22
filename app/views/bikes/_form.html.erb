@@ -1,35 +1,13 @@
-<%= form_for(@bike) do |f| %>
+<%= simple_form_for @bike do |f| %>
 
-  <div class="row">
-    <div class="col-md-2">
-      <%= f.label :name, 'Bike model' %>
-    </div>
-    <div class="col-md-2">
-      <%= f.text_field :name %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-2">
-      <%= f.label :year, 'Year' %>
-    </div>
-    <div class="col-md-2">
-      <%= f.number_field :year %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-2">
-      <%= f.label :color, 'Color' %>
-    </div>
-    <div class="col-md-2">
-      <%= f.text_field :color %>
-    </div>
-  </div>
-
+  <%= f.input :name, label: 'bike model', placeholder: 'bike model', 
+                     error: 'bike model must be present, not more 30 symbols', input_html: { maxlength: 50 } %>
+  <%= f.input :year, placeholder: 'year', label: 'year', error: 'year must be digits, not more 4 symbols', input_html: { maxlength: 4 } %>
+  <%= f.input :color, placeholder: 'color', error: 'color must be present, not more 30 symbols', input_html: { maxlength: 50 } %>
+  <br/>
   <div class="actions">
-    <%= f.submit 'Save', class: "btn btn-success btn-sm" %> | 
+    <%= f.submit 'Save', class: "btn btn-success" %> |
     <%= link_to 'Back', bikes_path, class: "btn btn-default btn-sm" %>
   </div>
-
+  
 <% end %>
