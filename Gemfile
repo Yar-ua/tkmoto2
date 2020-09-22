@@ -56,3 +56,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap', '~> 5.0.0.alpha1'
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13.0'
+
+# for fixing error with old Node versions:
+# 'Autoprefixer doesn’t support Node v8.10.0. Update it.'
+gem 'mini_racer'
