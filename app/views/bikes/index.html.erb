@@ -16,8 +16,8 @@
         <tr>
 
           <td><%= link_to bike.name, bike %><br/>
-            <%= link_to 'Топливная статистика', new_bike_stata_fuel_path(bike), :class => "btn btn-default btn-sm", method: :get %><br/>
-            <%= link_to 'Ремонтная статистика', new_bike_stata_repair_path(bike), :class => "btn btn-default btn-sm", method: :get %>
+            <%= link_to 'Fuel', new_bike_fuel_path(bike), class: "btn btn-info btn-sm" %><br/>
+            %= link_to 'Repair' %
           </td>
           <td></td>
           <td><%= bike.year %></td>
@@ -26,7 +26,7 @@
           <div class="btn-group btn-group-vertical" role="group" aria-label="...">
             <%= link_to 'Show', bike_path(bike), class: "btn btn-default btn-sm" %>
             <%= link_to 'Edit', edit_bike_path(bike), class: "btn btn-default btn-sm" %>
-            <%= link_to 'Удалить', bike, class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Delete', bike, class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %>
           </div>
           </td>
         

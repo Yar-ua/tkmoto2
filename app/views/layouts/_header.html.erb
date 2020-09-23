@@ -1,52 +1,21 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#"><%= image_tag "tkm_logo_sm.png", :style => "height: 70px; float :left;" %></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Навигация</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href=""><%= image_tag "tkm_logo_sm.png", :style => "height: 70px; float :left;" %></a>
-    </div>
-
-    <div class="collapse navbar-collapse navbar-inverse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li <%= "class=active" if current_page?('/home/start') %> ><%= link_to "Главная", root_path %></li>
-        <li <%= "class=active" if current_page?('/home/about') %>><%= link_to "О проекте", about_path %></li>
-        <li <%= "class=active" if current_page?('/bikes') %>><%= link_to "Мото Статистика", bikes_path %></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Сравнение<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">по топливу</a></li>
-            <li><a href="#">по ремонту</a></li>
-            <li><a href="#">по пробегу</a></li>
-          </ul>
-        </li>
-      </ul>
-      
-        <ul class="nav navbar-nav navbar-right">  
-          <li class="dropdown">
-            <a id="log-in_username_style" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              %= @current_user.name %
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-            <li><%= link_to "Профиль", root_path %></li>
-            <li><%= link_to "Настройки", root_path %></li>
-            <li><%= link_to "Все участники", root_path %></li>
-            <li role="separator" class="divider"></li>
-            <li><%= link_to "Выйти", root_path, method: :delete %></li>
-          </li>
-        </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-          <div class="btn-group" role="group" aria-label="...">
-            <%= link_to "Вход", root_path, class: "btn btn-small btn-primary" %>
-            <%= link_to "Регистрация", root_path, class: "btn btn-small btn-success" %>
-          </div>
-        </ul>
-
-      </div>
-
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= link_to "Home", root_path, :class => "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Bikes", bikes_path, :class => "nav-link" %>
+      </li>
+    </ul>
+    <!--<form class="form-inline my-2 my-lg-0">-->
+    <!--  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+    <!--  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+    <!--</form>-->
+  </div>
 </nav>

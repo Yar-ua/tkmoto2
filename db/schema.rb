@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_22_085822) do
+ActiveRecord::Schema.define(version: 2020_09_23_075209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_09_22_085822) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "stata_fuels", id: :serial, force: :cascade do |t|
+  create_table "fuels", id: :serial, force: :cascade do |t|
     t.decimal "odo"
     t.decimal "odo_delta"
     t.decimal "refueling"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_09_22_085822) do
     t.integer "bike_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bike_id"], name: "index_stata_fuels_on_bike_id"
+    t.index ["bike_id"], name: "index_fuels_on_bike_id"
   end
 
   create_table "stata_repairs", id: :serial, force: :cascade do |t|

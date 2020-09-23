@@ -1,4 +1,4 @@
-<%= form_for :stata_fuel, url: bike_stata_fuel_path, method: :put do |f| %>
+<%= form_for :stata_fuel, url: bike_fuel_path, method: :put do |f| %>
 
     <div class="row">
       <div class="col-md-6">
@@ -59,7 +59,7 @@
 
     <div class="actions">
       <%= f.submit 'Сохранить', class: "btn btn-success btn-sm" %> |
-      <%= link_to 'Назад', new_bike_stata_fuel_path, class: "btn btn-default btn-sm" %>
+      <%= link_to 'Назад', new_bike_fuel_path, class: "btn btn-default btn-sm" %>
     </div>
   </div>
 
