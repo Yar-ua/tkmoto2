@@ -1,7 +1,7 @@
 class Bike < ApplicationRecord
-  has_many :fuels, dependent: :destroy, validate: true
+  has_many :fuels, dependent: :destroy #, validate: true
   # has_many :stata_repairs, dependent: :destroy, validate: true
-  validates_associated :fuels
+  # validates_associated :fuels
   # validates_associated :stata_repairs
 
   validates	:name,  presence: true, 

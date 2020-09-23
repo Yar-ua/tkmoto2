@@ -1,1 +1,7 @@
-Fuel index file
+<h3>Fuel of bike <%= @bike.name %> | <%= @bike.year %> | <%= @bike.color %>:</h3>
+
+<%= link_to 'Create fuel data', new_bike_fuel_path(@bike), class: "btn btn-success btn-sm" %>
+
+<%= render 'fuels/table_fuel' %>
+
+<hr>

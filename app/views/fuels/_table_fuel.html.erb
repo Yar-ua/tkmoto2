@@ -1,0 +1,24 @@
+<table class="table table-responsive table-striped">
+      <thead>
+      <tr>
+        <th>Odometer, km</th>
+        <th>Mileage, km</th>
+        <th>Filled petrol, l</th>
+        <th>Price, uan</th>
+        <th>Petrol Station</th>
+        <th>Fuel mark</th>
+        <th>l / 100 km</th>
+        <th>l / 1 km</th>
+        <th>km / 1 l</th>
+        <th>km / 1 uan</th>
+        <th>uan / 1 km</th>
+        <th>Control</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @view_stata_fuel.each do |fuel| %>
+        <%= render 'fuels/fuel', fuel: fuel %>
+      <% end %>
+    </tbody>
+  </table>

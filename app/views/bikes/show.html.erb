@@ -1,3 +1,18 @@
-<h1>Bike info</h1>
+<p>
+  <strong>Model:</strong>
+  <%= @bike.name %>
+</p>
 
-<%= render 'form', bike: @bike %>
+<p>
+  <strong>Year:</strong>
+  <%= @bike.year %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @bike.color %>
+</p>
+
+
+<%= link_to 'Edit', edit_bike_path(@bike), class: "btn btn-primary btn-sm" %> |
+<%= link_to 'Back', bikes_path, class: "btn btn-default btn-sm" %>
