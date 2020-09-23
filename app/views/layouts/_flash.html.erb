@@ -1,4 +1,3 @@
-
 <div class="container">
   <% flash.each do |type, msg| %>
     <div class="alert <%= bootstrap_class_for_flash(type) %> alert-dismissable fade show">
@@ -9,8 +8,3 @@
     </div>
   <% end %> 
 </div>
-
-
-<script>
-  $(".alert").alert('close')
-</script>
