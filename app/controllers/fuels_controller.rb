@@ -1,8 +1,9 @@
 class FuelsController < ApplicationController
-   before_action :set_view_stata_fuel
-   before_action :set_stata_fuel_find, only: [ :edit, :update, :destroy ]
+   before_action :set_view_fuel
+   before_action :set_fuel_find, only: [ :edit, :update, :destroy ]
 
-
+  def index
+  end
  
   def new
       @bike = Bike.find(params[:bike_id])
@@ -50,12 +51,12 @@ class FuelsController < ApplicationController
 
   private
 
-    def set_stata_fuel_find
+    def set_fuel_find
       @stata_fuel = Fuel.find(params[:id])
     end
 
 
-    def set_view_stata_fuel
+    def set_view_fuel
       @view_stata_fuel = Fuel.where("bike_id = ?", params[:bike_id]).order(id: :desc)
     end
 

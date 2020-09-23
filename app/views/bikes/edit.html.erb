@@ -1,15 +1,7 @@
 <h1>Edit bike</h1>
 
-<% if @bike.errors.any? %>
-  <div id="error_explanation" class="alert alert-danger" role="alert">
-    <ul>
-      <% @bike.errors.each do |attribute, error| %>
-        <li><%= error %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <%= render 'form', bike: @bike %>
 
+<hr/>
+<%= link_to 'Delete', bike_path(@bike), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %>
 <hr/>

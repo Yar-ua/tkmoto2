@@ -1,0 +1,8 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><%= link_to bike.name, bike_path(bike) %></h5>
+    <p class="card-text">Color: <%= bike.color %> | Year <%= bike.year %></p>
+    <a href="#" class="btn btn-primary">Statistic</a> | 
+    <%= link_to 'Fuel', new_bike_fuel_path(bike), class: "btn btn-info" %><br/>
+  </div>
+</div>

@@ -1,39 +1,8 @@
 <h1>Bikes:</h1>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Model</th>
-        <th></th>
-        <th>Year</th>
-        <th>Color</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @bikes.each do |bike| %>
-        <tr>
-
-          <td><%= link_to bike.name, bike %><br/>
-            <%= link_to 'Fuel', new_bike_fuel_path(bike), class: "btn btn-info btn-sm" %><br/>
-            %= link_to 'Repair' %
-          </td>
-          <td></td>
-          <td><%= bike.year %></td>
-          <td><%= bike.color %></td>
-          <td>
-          <div class="btn-group btn-group-vertical" role="group" aria-label="...">
-            <%= link_to 'Show', bike_path(bike), class: "btn btn-default btn-sm" %>
-            <%= link_to 'Edit', edit_bike_path(bike), class: "btn btn-default btn-sm" %>
-            <%= link_to 'Delete', bike, class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %>
-          </div>
-          </td>
-        
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <% @bikes.each do |bike| %>
+    <%= render 'bikes/bike', bike: bike %>
+  <% end %>
 
 <hr>
     <%= link_to 'Create new bike', new_bike_path, class: "btn btn-success btn-sm" %>
