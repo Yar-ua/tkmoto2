@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_075209) do
+ActiveRecord::Schema.define(version: 2020_09_24_083229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,4 +46,5 @@ ActiveRecord::Schema.define(version: 2020_09_23_075209) do
     t.index ["bike_id"], name: "index_stata_repairs_on_bike_id"
   end
 
+  add_foreign_key "fuels", "bikes"
 end

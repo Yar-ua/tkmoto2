@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # get 'stata_repairs/edit'
 
   resources :bikes do
-  	resources :fuels
+  	resources :fuels, except: :show
     # resources :stata_repairs
   end
 

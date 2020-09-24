@@ -7,13 +7,13 @@ class BikesController < ApplicationController
     @bikes = Bike.all
   end
 
-  # GET /bikes/1
-  def show
-  end
-
   # GET /bikes/new
   def new
     @bike = Bike.new
+  end
+  
+  # GET /bikes/1
+  def show
   end
 
   # GET /bikes/1/edit

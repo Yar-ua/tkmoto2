@@ -1,0 +1,17 @@
+<%= simple_form_for :fuel, url: bike_fuel_path(@fuel), method: :put do |f| %>
+
+  <%= f.input :odo, label: 'current odometer value' %>
+  <%= f.input :odo_delta, label: 'Mileage, km' %>
+  <%= f.input :refueling, label: 'Filled petrol, l' %>
+  <%= f.input :price_fuel, label: 'Price for all fuel, uan' %>
+
+  <%= f.input :fuel_station, label: 'Enter name of petrol station' %>
+  <%= f.input :fuel_type, label: 'Enter type of fuel' %>
+
+  <br/>
+  <div class="actions">
+    <%= f.submit 'Save', class: "btn btn-success btn-sm" %> |
+    <%= link_to 'Back', bike_fuels_path(@bike), class: "btn btn-default btn-sm" %>
+  </div>
+  
+<% end %>
