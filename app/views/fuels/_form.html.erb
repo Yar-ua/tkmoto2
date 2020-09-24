@@ -1,17 +1,21 @@
-<%= simple_form_for :fuel, url: bike_fuels_path(@bike), method: :post do |f| %>
+<%= simple_form_for @fuel, url: bike_fuels_path(@bike), method: :post do |f| %>
 
-  <%= f.input :odo, label: 'current odometer value' %>
-  <%= f.input :odo_delta, label: 'Mileage, km' %>
-  <%= f.input :refueling, label: 'Filled petrol, l' %>
-  <%= f.input :price_fuel, label: 'Price for all fuel, uan' %>
+  <%= f.input :odo, placeholder: '0', label: 'current odometer value', 
+              error: "odometer value must be present and be digits", input_html: { maxlength: 50 } %>
+  <%= f.input :odo_delta, placeholder: '0', label: 'Mileage, km', 
+              error: "Mileage value must be present and be digits", input_html: { maxlength: 50 } %>
+  <%= f.input :refueling, placeholder: '0', label: 'Filled petrol, l', 
+              error: "Filled petrol must be present and be digits", input_html: { maxlength: 50 } %>
+  <%= f.input :price_fuel, placeholder: '0', label: 'Price for all fuel, uan', 
+              error: "Petrol price must be present and be digits", input_html: { maxlength: 50 } %>
 
-  <%= f.input :fuel_station, label: 'Enter name of petrol station' %>
-  <%= f.input :fuel_type, label: 'Enter type of fuel' %>
+  <%= f.input :fuel_station, label: 'Enter name of petrol station', input_html: { maxlength: 50 } %>
+  <%= f.input :fuel_type, label: 'Enter type of fuel', input_html: { maxlength: 50 } %>
 
   <br/>
   <div class="actions">
     <%= f.submit 'Save', class: "btn btn-success btn-sm" %> |
-    <%= link_to 'Back', bike_fuels_path(@bike), class: "btn btn-default btn-sm" %>
+    <%= link_to 'Back', bike_fuels_path(bike_id: @bike.id), class: "btn btn-default btn-sm" %>
   </div>
   
 <% end %>
