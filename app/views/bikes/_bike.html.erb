@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">Name: <%= link_to bike.name, bike_path(bike) %></h5>
-    <p class="card-text">Color: <%= bike.color %> | Year <%= bike.year %></p>
+    <p class="card-text">Color: <%= bike.color %> | Volume: <%= bike.volume %> cm3 | Year <%= bike.year %></p>
     <p class="card-footer">
       <a href="#" class="btn btn-primary">Statistic</a> | 
       <%= link_to 'Fuel', bike_fuels_path(bike), class: "btn btn-info" %><br/>

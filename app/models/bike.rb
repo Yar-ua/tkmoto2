@@ -1,15 +1,15 @@
 class Bike < ApplicationRecord
-  has_many :fuels, dependent: :destroy #, validate: true
-  # has_many :stata_repairs, dependent: :destroy, validate: true
-  # validates_associated :fuels
-  # validates_associated :stata_repairs
+  has_many :fuels, dependent: :destroy
 
-  validates	:name,  presence: true, 
-                    length: { maximum: 50 }
-  validates :year,  presence: true, 
-                    length: { maximum: 4 },
-                    numericality: { only_integer: true }
-  validates	:color, presence: true, 
-                    length: { maximum: 50 }
+  validates	:name,   presence: true, 
+                     length: { maximum: 50 }
+  validates :year,   presence: true, 
+                     length: { maximum: 4 },
+                     numericality: { only_integer: true }
+  validates	:color,  presence: true, 
+                     length: { maximum: 50 }
+  validates :volume, presence: true,
+                     length: { maximum: 10 },
+                     numericality: { only_integer: true }
 	
 end
