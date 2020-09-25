@@ -1,10 +1,18 @@
-<div class="card">
-  <div class="card-header">
-    Featured
+<% @repairs.each do |repair| %>
+  <div class="card">
+    <div class="card-header">
+      Date: <%= repair.date %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= repair.description %></h5>
+      <p class="card-text"><%= repair.note %></p>
+      <%= link_to 'Edit', edit_bike_repair_path(bike_id: repair.bike_id, id: repair.id), class: "btn btn-primary btn-sm" %>
+      <%= link_to 'Destroy', bike_repair_path(bike_id: repair.bike_id, id: repair.id), class: "btn btn-danger btn-sm",
+          method: :delete, data: { confirm: 'Are you really want to delete data?' }%>
+    </div>
+    <div class="card-footer text-muted">
+      Price: <%= repair.price %>
+    </div>
   </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
+  <br/>
+<% end %>

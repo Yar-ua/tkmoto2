@@ -3,7 +3,7 @@ class FuelsController < ApplicationController
   before_action :set_fuel, only: [ :edit, :update, :destroy ]
 
   def index
-    @fuels = @bike.fuels.order(id: :desc)
+    @fuels = @bike.fuels.order(created_at: :desc)
   end
  
   def new

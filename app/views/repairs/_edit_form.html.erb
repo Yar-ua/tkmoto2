@@ -1,4 +1,4 @@
-<%= simple_form_for @repair, url: bike_repairs_path(@bike), method: :post do |f| %>
+<%= simple_form_for @repair, url: bike_repair_path(@repair), method: :put do |f| %>
 
   <%= f.input :description, placeholder: '...', label: 'Type of breaking', 
               error: "Descript type of breaking", input_html: { maxlength: 255 } %>
