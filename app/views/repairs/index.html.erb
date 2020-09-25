@@ -1,0 +1,7 @@
+<h3>Repair history of bike: <%= @bike.name %> | volume: <%= @bike.volume %> cm3 | year: <%= @bike.year %> | color: <%= @bike.color %>:</h3>
+
+<%= link_to 'Create repair data', new_bike_repair_path(@bike), class: "btn btn-success btn-sm" %>
+
+<%= render 'repairs/table_repair' %>
+
+<hr>

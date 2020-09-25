@@ -2,13 +2,13 @@ class CreateStataFuels < ActiveRecord::Migration[5.0]
   def change
     create_table :stata_fuels do |t|
       
-      t.numeric	        :odo 			          # текущие показания одометра, км
-      t.numeric	        :odo_delta		      # изменения показателей одометра (пробег), км
-      t.numeric	        :refueling		      # кол-во заправленного топлива, л
-      t.numeric	        :price_fuel		      # стоимость заправленого топлива, грн
-      t.string  	      :fuel_station	      # заправка
-      t.string	        :fuel_type		      # марка бензина
-      t.references      :bike #, foreign_key: true
+      t.numeric	        :odo 			          
+      t.numeric	        :odo_delta		      
+      t.numeric	        :refueling		      
+      t.numeric	        :price_fuel		      
+      t.string  	      :fuel_station	      
+      t.string	        :fuel_type		      
+      t.references      :bike 
 
       t.timestamps
     end

@@ -24,7 +24,7 @@ class FuelsController < ApplicationController
         format.json { render json: @fuel.errors, status: :unprocessable_entity }
       end
     end
- 	end
+  end
 
   def show
   end

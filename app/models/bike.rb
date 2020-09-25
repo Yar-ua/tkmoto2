@@ -1,5 +1,6 @@
 class Bike < ApplicationRecord
   has_many :fuels, dependent: :destroy
+  has_many :repairs, dependent: :destroy
 
   validates	:name,   presence: true, 
                      length: { maximum: 50 }

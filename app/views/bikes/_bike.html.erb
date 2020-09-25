@@ -4,7 +4,9 @@
     <p class="card-text">Color: <%= bike.color %> | Volume: <%= bike.volume %> cm3 | Year <%= bike.year %></p>
     <p class="card-footer">
       <a href="#" class="btn btn-primary">Statistic</a> | 
-      <%= link_to 'Fuel', bike_fuels_path(bike), class: "btn btn-info" %><br/>
+      <%= link_to 'Fuel', bike_fuels_path(bike), class: "btn btn-info" %> |
+      <%= link_to 'Repair', bike_repairs_path(bike), class: "btn btn-info" %><br/>
     </p>
+    
   </div>
 </div>
