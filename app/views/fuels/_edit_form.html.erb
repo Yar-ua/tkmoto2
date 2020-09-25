@@ -11,6 +11,9 @@
 
   <%= f.input :fuel_station, label: 'Enter name of petrol station', input_html: { maxlength: 50 } %>
   <%= f.input :fuel_type, label: 'Enter type of fuel', input_html: { maxlength: 50 } %>
+  
+  <%= f.input :date, as: :date, placeholder: Time.now.strftime('%Y-%m-%d'), label: 'Filling date', 
+              error: "date must be present", html5: true %>
 
   <br/>
   <div class="actions">

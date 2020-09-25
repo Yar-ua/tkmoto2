@@ -71,7 +71,7 @@ class FuelsController < ApplicationController
   end
 
   def fuel_params
-    params.require(:fuel).permit(:bike_id, :odo, :odo_delta, :refueling, :price_fuel, :fuel_station, :fuel_type)
+    params.require(:fuel).permit(:bike_id, :odo, :odo_delta, :refueling, :price_fuel, :fuel_station, :fuel_type, :date)
   end
 
 end
