@@ -28,7 +28,10 @@ class BikeConfigsController < ApplicationController
         }
       format.json { render :show, status: :created, location: @bike_config }
       else
-        format.html { render :new }
+        format.html { 
+          flash[:error] = 'Wrong arguments, try again'
+          render :new
+        }
         format.json { render json: @bike_config.errors, status: :unprocessable_entity }
       end
     end
@@ -48,7 +51,9 @@ class BikeConfigsController < ApplicationController
         }
         format.json { render :show, status: :created, location: @bike_config}
       else
-        format.html { render :edit }
+        format.html { 
+          flash[:error] = 'Wrong arguments, try again'
+          render :edit }
         format.json { render json: @bike_config.errors, status: :unprocessable_entity }
       end
     end    

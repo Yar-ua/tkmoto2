@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_09_28_063613) do
   enable_extension "plpgsql"
 
   create_table "bike_configs", force: :cascade do |t|
-    t.integer "oil_change", default: 0
+    t.integer "oil_change"
     t.bigint "bike_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
