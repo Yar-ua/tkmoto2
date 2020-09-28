@@ -18,7 +18,7 @@ class FuelsController < ApplicationController
           flash[:success] = 'Fuel was successfully created'
           redirect_to bike_fuels_path(@bike)
         }
-        format.json { render :show, status: :created, location: @fuel}
+        format.json { render :show, status: :created, location: @fuel }
       else
         format.html { render :new }
         format.json { render json: @fuel.errors, status: :unprocessable_entity }

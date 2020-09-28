@@ -18,6 +18,6 @@
   <%= @bike.volume %>
 </p>
 
-
+<%= link_to 'Bike configs', bike_bike_configs_path(@bike), class: "btn btn-primary btn-sm" %> |
 <%= link_to 'Edit', edit_bike_path(@bike), class: "btn btn-primary btn-sm" %> |
 <%= link_to 'Back', bikes_path, class: "btn btn-default btn-sm" %>

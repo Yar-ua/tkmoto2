@@ -1,0 +1,2 @@
+module BikeConfigsHelper
+end
