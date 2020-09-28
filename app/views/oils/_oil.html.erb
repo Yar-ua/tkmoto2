@@ -1,0 +1,10 @@
+<tr>
+  <td><%= oil.oil_change %></td>
+  <td>
+    <div class="btn-group" role="group" aria-label="...">
+      <%= link_to 'Edit', edit_bike_oil_path(bike_id: oil.bike_id, id: oil.id), class: "btn btn-warning btn-sm" %>
+      <%= link_to 'Delete', bike_oil_path(bike_id: oil.bike_id, id: oil.id), class: "btn btn-danger btn-sm", 
+          method: :delete, data: { confirm: 'Are you really want to delete data?' } %>
+    </div>
+  </td>
+</tr>

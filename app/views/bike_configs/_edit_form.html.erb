@@ -1,6 +1,6 @@
 <%= simple_form_for :bike_config, url: bike_bike_configs_path(@bike), method: :put do |f| %>
 
-  <%= f.input :oil_change, label: 'Distance for oil change, km', as: :integer, input_html: { maxlength: 10 } %>
+  <%= f.input :oil_change, as: :integer, label: 'Distance for oil change, km', input_html: { maxlength: 10 } %>
   <br/>
   <div class="actions">
     <%= f.submit 'Save', class: "btn btn-success btn-sm" %> |

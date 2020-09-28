@@ -20,13 +20,13 @@ class FuelsController < ApplicationController
         }
         format.json { render :show, status: :created, location: @fuel }
       else
-        format.html { render :new }
+        format.html { 
+          flash[:error] = 'Something going wrong, try again'
+          render :new 
+        }
         format.json { render json: @fuel.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def show
   end
 
   def edit
@@ -41,7 +41,10 @@ class FuelsController < ApplicationController
         }
         format.json { render :show, status: :created, location: @fuel}
       else
-        format.html { render :edit }
+        format.html { 
+          flash[:error] = 'Something going wrong, try again'
+          render :edit 
+        }
         format.json { render json: @fuel.errors, status: :unprocessable_entity }
       end
     end

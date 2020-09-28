@@ -1,0 +1,14 @@
+<table class="table table-responsive table-striped">
+      <thead>
+      <tr>
+        <th>Odometer, km</th>
+        <th>Control</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @oils.each do |oil| %>
+        <%= render 'oils/oil', oil: oil %>
+      <% end %>
+    </tbody>
+  </table>
