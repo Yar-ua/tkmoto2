@@ -1,0 +1,8 @@
+<h3>Fuel of bike: <%= @bike.name %> | volume: <%= @bike.volume %> cm3 | year: <%= @bike.year %> | color: <%= @bike.color %>:</h3>
+
+<%= link_to 'Create fuel data', new_bike_fuel_path(@bike), class: "btn btn-success btn-sm" %>
+<br/>
+<div>
+  <%= render 'fuels/table_fuel' %>
+</div>
+<hr>

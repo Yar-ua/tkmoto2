@@ -1,0 +1,7 @@
+<h1>Edit bike</h1>
+
+<%= render 'form', bike: @bike %>
+
+<hr/>
+<%= link_to 'Delete', bike_path(@bike), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %>
+<hr/>

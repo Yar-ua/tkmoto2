@@ -1,0 +1,22 @@
+<tr>
+  <td><%= fuel.odo %></td>
+  <td><%= fuel.odo_delta %></td>
+  <td><%= fuel.refueling %></td>
+  <td><%= fuel.price_fuel %></td>
+  <td><%= fuel.date %></td>
+  <td><%= fuel.fuel_station %></td>
+  <td><%= fuel.fuel_type %></td> 
+
+  <td><%= (fuel.refueling / (fuel.odo_delta / 100)).round(2)  %></td>
+  <td><%= (fuel.refueling / fuel.odo_delta).round(2) %></td>
+  <td><%= (fuel.odo_delta / fuel.refueling).round(2) %></td>
+  <td><%= (fuel.odo_delta / fuel.price_fuel).round(2) %></td>
+  <td><%= (fuel.price_fuel / fuel.odo_delta).round(2) %></td>
+  <td>
+    <div class="btn-group-vertical" role="group" aria-label="...">
+      <%= link_to 'Edit', edit_bike_fuel_path(bike_id: fuel.bike_id, id: fuel.id), class: "btn btn-default btn-sm" %>
+      <%= link_to 'Delete', bike_fuel_path(bike_id: fuel.bike_id, id: fuel.id), class: "btn btn-danger btn-sm", 
+          method: :delete, data: { confirm: 'Are you really want to delete data?' } %>
+    </div>
+  </td>
+</tr>

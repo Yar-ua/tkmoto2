@@ -1,0 +1,28 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Тип (ремонт, апгрейд/разное)</th>
+      <th>Описание работ и затрат</th>
+      <th>Затраты, грн</th>
+      <th>Управление</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @view_stata_repair.each do |repair_stata| %>
+      <tr>
+        <td><%= repair_stata.type %></td>
+        <td><%= repair_stata.note %></td>
+        <td><%= repair_stata.price %></td>
+        <td>
+          <div class="btn-group-vertical" role="group" aria-label="...">
+            <%= link_to 'Редактировать', edit_bike_stata_repair_path(id: repair_stata.id), class: "btn btn-default btn-sm" %>
+            <%= link_to 'Удалить', bike_stata_repair_path(id: repair_stata.id), class: "btn btn-danger btn-sm", 
+                          method: :delete, 
+                          data: { confirm: 'Уверен что хочешь удалить запись?' } %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

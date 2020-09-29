@@ -1,0 +1,14 @@
+<%= simple_form_for @bike do |f| %>
+
+  <%= f.input :name, label: 'bike model', placeholder: 'bike model', 
+                     error: 'bike model must be present, not more 30 symbols', input_html: { maxlength: 50 } %>
+  <%= f.input :year, placeholder: 'year', label: 'year', error: 'year must be digits, not more 4 symbols', input_html: { maxlength: 4 } %>
+  <%= f.input :volume, placeholder: 'volume', label: 'engine volume, cm3', error: 'volume must be digits', input_html: { maxlength: 10 } %>
+  <%= f.input :color, placeholder: 'color', error: 'color must be present, not more 30 symbols', input_html: { maxlength: 50 } %>
+  <br/>
+  <div class="actions">
+    <%= f.submit 'Save', class: "btn btn-success btn-sm" %> |
+    <%= link_to 'Back', bikes_path, class: "btn btn-default btn-sm" %>
+  </div>
+  
+<% end %>

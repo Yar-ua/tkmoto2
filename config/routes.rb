@@ -1,3 +1,15 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  root to: 'bikes#index'
+
+  resources :bikes do
+  	resources :fuels, except: :show
+    resources :repairs
+    resources :oils, except: :show
+    resource :bike_configs, except: :destroy
+  end
+
+  match 'about', to: 'home#about', via: [:get]
+
+
 end

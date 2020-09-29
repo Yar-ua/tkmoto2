@@ -1,0 +1,23 @@
+<p>
+  <strong>Model:</strong>
+  <%= @bike.name %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @bike.year %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @bike.color %>
+</p>
+
+<p>
+  <strong>Engine volume, cm3:</strong>
+  <%= @bike.volume %>
+</p>
+
+<%= link_to 'Bike configs', bike_bike_configs_path(@bike), class: "btn btn-primary btn-sm" %> |
+<%= link_to 'Edit', edit_bike_path(@bike), class: "btn btn-primary btn-sm" %> |
+<%= link_to 'Back', bikes_path, class: "btn btn-default btn-sm" %>

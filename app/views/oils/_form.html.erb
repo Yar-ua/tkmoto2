@@ -1,0 +1,10 @@
+<%= simple_form_for @oil, url: bike_oils_path(@bike), method: :post do |f| %>
+
+  <%= f.input :oil_change, label: 'distance where oil was changed', 
+              error: "value must be present and be digits", input_html: { maxlength: 50 } %>
+  <br/>
+  <div class="actions">
+    <%= f.submit 'Save', class: "btn btn-success btn-sm" %> |
+    <%= link_to 'Back', bike_oils_path(bike_id: @bike.id), class: "btn btn-default btn-sm" %>
+  </div>
+<% end %>

@@ -1,6 +1,6 @@
 # README
 
-Ruby version 2.7.0
+Ruby version 2.7.1
 
 for start this app run:
 

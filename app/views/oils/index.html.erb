@@ -1,0 +1,12 @@
+<h1>Oils change information</h1>
+
+<h3>For bike: <%= @bike.name %> | volume: <%= @bike.volume %> cm3 | year: <%= @bike.year %> | color: <%= @bike.color %> oil was changed on next km:</h3>
+<%= link_to 'add oil change...', new_bike_oil_path, class: "btn btn-success btn-sm" %>
+
+<br/>
+<div>
+  <%= render 'oils/table_oil' %>
+</div>
+<hr>
+
+

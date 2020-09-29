@@ -1,0 +1,38 @@
+<div id='chartDivRashod'>
+  <script>
+    var chartRashod = {
+      type: "bar",  // Specify your chart type here.
+
+      "plot": {
+        "value-box": {
+          "text": "%node-value"
+        }
+      },
+      title: {
+        text: "средний расход, л/100 км" // Adds a title to your chart
+      },
+      
+        "type": "bar",
+        "scale-x": {
+        "zooming": true
+        },
+        "scale-y": {
+        "zooming": false
+      },
+      "preview": {
+        "visible": true
+      },
+
+      series: [  
+          { values: <%= JSON.parse(@json_stata_l_na_100_km) %> }
+      ]
+    };
+
+    zingchart.render({ // Render Method[3]
+      id: "chartDivRashod",
+      data: chartRashod,
+      height: 400,
+      width: 600
+    });
+  </script>
+</div>

@@ -1,0 +1,18 @@
+<%= simple_form_for @repair, url: bike_repair_path(@repair), method: :put do |f| %>
+
+  <%= f.input :description, placeholder: '...', label: 'Type of breaking', 
+              error: "Descript type of breaking", input_html: { maxlength: 255 } %>
+  <%= f.input :note, placeholder: '...', label: 'Note your solution or what was repaired'%>
+  <%= f.input :price, placeholder: '0', label: 'How much repair costs, uan', 
+              error: "if free - enter 0", input_html: { maxlength: 50 } %>
+
+  <%= f.input :date, as: :date, placeholder: Time.now.strftime('%Y-%m-%d'), label: 'Filling repair date', 
+              error: "date must be present", html5: true %>
+  
+  <br/>
+  <div class="actions">
+    <%= f.submit 'Save', class: "btn btn-success btn-sm" %> |
+    <%= link_to 'Back', bike_repairs_path(bike_id: @bike.id), class: "btn btn-default btn-sm" %>
+  </div>
+  
+<% end %>
