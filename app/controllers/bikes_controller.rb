@@ -3,6 +3,7 @@ class BikesController < ApplicationController
   before_action :set_bike, only: [:show, :edit, :update, :destroy]
 
   # GET /bikes
+  # GET /bikes.json
   def index
     @bikes = Bike.all.paginate(page: params[:page], per_page: 10)
   end
@@ -13,6 +14,7 @@ class BikesController < ApplicationController
   end
   
   # GET /bikes/1
+  # GET /bikes/1.json
   def show
   end
 
@@ -22,6 +24,7 @@ class BikesController < ApplicationController
 
 
   # POST /bikes
+  # POST /bikes.json
   def create
     @bike = Bike.new(bike_params)
     respond_to do |format|
@@ -40,6 +43,7 @@ class BikesController < ApplicationController
 
 
   # PATCH/PUT /bikes/1
+  # PATCH/PUT /bikes/1.json
   def update
     respond_to do |format|
       if @bike.update(bike_params)
