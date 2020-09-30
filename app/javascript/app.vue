@@ -1,11 +1,24 @@
 <template>
   <div id="app">
     <p>{{ message }}</p>
+    <app-bikes></app-bikes>
   </div>
 </template>
 
 <script>
+
+import Bikes from './components/Bikes'
+
 export default {
+  message: "Hello Vue!",
+  name: 'App',
+  drawer: false,
+  components: {
+    'app-bikes': Bikes
+  },
+  props: {
+    source: String
+  },
   data: function () {
     return {
       message: "Hello Vue!"
