@@ -7,7 +7,7 @@
 
 <script>
 
-import Bikes from './components/Bikes'
+import Bikes from './components/bikes/Bikes'
 
 export default {
   message: "Hello Vue!",
