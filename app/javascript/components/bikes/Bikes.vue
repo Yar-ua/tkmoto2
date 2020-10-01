@@ -1,8 +1,8 @@
 <template>
-  <v-container fluid grid-list-lg>
-      <h4>{{ msg }}</h4>
-      <h6>{{ bikes }}</h6>
-  </v-container>
+  <div>
+    <h4>{{ msg }}</h4>
+    <h6>{{ bikes }}</h6>
+  </div>
 </template>
 
 <script>
