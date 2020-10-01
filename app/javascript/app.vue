@@ -32,7 +32,8 @@
       </md-app-drawer>
 
       <md-app-content>
-        <app-bikes></app-bikes>
+        <!--<app-bikes></app-bikes>-->
+        <router-view/>
       </md-app-content>
     </md-app>
   </div>

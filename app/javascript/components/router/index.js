@@ -3,6 +3,8 @@ import Router from 'vue-router'
 
 
 // by default if you write import xxx from '../bikes' it means 
+import About from '../home/About'
+import Page404 from '../Page404'
 import Bikes from '../bikes/Bikes'
 
 Vue.use(Router)
@@ -10,15 +12,25 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/home',
+      name: 'Home',
+      component: Bikes
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: About
+    },
+    {
       path: '/',
       name: 'Bikes',
       component: Bikes
-    }
-    // {
-    //   path: '*',
-    //   name: 'Page404',
-    //   component: Page404
-    // },
+    },    
+    {
+      path: '*',
+      name: 'Page404',
+      component: Page404
+    },
     // {
     //   path: '/no_permission',
     //   name: 'PageNoPermission',
