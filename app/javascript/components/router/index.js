@@ -5,6 +5,8 @@ import Router from 'vue-router'
 // by default if you write import xxx from '../bikes' it means 
 import About from '../home/About'
 import Page404 from '../Page404'
+import SignIn from '../SignIn'
+import SignUp from '../SignUp'
 import Bikes from '../bikes/Bikes'
 
 Vue.use(Router)
@@ -31,20 +33,20 @@ export default new Router({
       name: 'Page404',
       component: Page404
     },
+    {
+      path: '/sign_up',
+      name: 'SignUp',
+      component: SignUp
+    },
+    {
+      path: '/sign_in',
+      name: 'SignIn',
+      component: SignIn
+    }
     // {
     //   path: '/no_permission',
     //   name: 'PageNoPermission',
     //   component: PageNoPermission
-    // },
-    // {
-    //   path: '/sign_up',
-    //   name: 'SignUp',
-    //   component: SignUp
-    // },
-    // {
-    //   path: '/sign_in',
-    //   name: 'SignIn',
-    //   component: SignIn
     // },
     // // bikes CRUD
     // // index

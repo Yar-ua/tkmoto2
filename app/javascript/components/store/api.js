@@ -1,5 +1,9 @@
 export default {
 
+  // POST sign up user
+  // sign_up: process.env.apiUrl + '/auth',
+  sign_up: '/auth',
+
   // GET about page
   about: process.env.apiUrl + '/about',
 
