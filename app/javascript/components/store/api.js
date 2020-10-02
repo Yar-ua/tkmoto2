@@ -7,6 +7,9 @@ export default {
   // POST sign in user
   // sign_in: process.env.apiUrl + '/auth/sign_in'
   sign_in: '/auth/sign_in',
+  
+  // DELETE sign uot user
+  sign_out: '/auth/sign_out',
 
   // GET about page
   about: process.env.apiUrl + '/about',

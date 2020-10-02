@@ -93,18 +93,20 @@ const Store = new Vuex.Store({
       return axios.post(API.sign_in, params)
         .then(response => {
           console.log(response)
-        //   context.commit('updateUser', response.data)
-        //   context.commit('updateAuth', true)
-        //   context.commit('updateTokens', response.headers)
+          context.commit('updateUser', response.data)
+          context.commit('updateAuth', true)
+          context.commit('updateTokens', response.headers)
         })
     },
     sign_out (context) {
+      console.log('store sign out')
       return axios.delete(API.sign_out, '')
         .then(response => {
-          context.commit('updateUser', {'data': {'id': '', 'name': '', 'email': ''}})
-          context.commit('updateAuth', false)
-          context.commit('updateTokens', response.headers)
-          context.commit('clearLocalStorage', '')
+          console.log(response)
+          // context.commit('updateUser', {'data': {'id': '', 'name': '', 'email': ''}})
+          // context.commit('updateAuth', false)
+          // context.commit('updateTokens', response.headers)
+          // context.commit('clearLocalStorage', '')
         })
         .catch(err => {
           if (err.response.status !== 200) {

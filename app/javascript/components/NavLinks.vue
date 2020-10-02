@@ -26,15 +26,15 @@ export default {
   methods: {
     logoutAction: function () {
       console.log('logout action')
-    //   this.$store.dispatch('sign_out', '')
-    //     .then(() => {
-    //       this.$router.push({name: 'Home'})
-    //       this.flashMessage.show({
-    //         status: 'success',
-    //         title: 'Success',
-    //         message: 'You logouted cussessfully'
-    //       })
-    //     })
+      this.$store.dispatch('sign_out', '')
+        .then(() => {
+          this.$router.push({name: 'Home'})
+          // this.flashMessage.show({
+          //   status: 'success',
+          //   title: 'Success',
+          //   message: 'You logouted cussessfully'
+          // })
+        })
     }
   }
 }
