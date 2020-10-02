@@ -12,20 +12,20 @@ Vue.use(Vuex)
 
 const Store = new Vuex.Store({
   state: {
-    // isAuth: !!localStorage.isAuth,
+    isAuth: !!localStorage.isAuth,
     data: '',
-    // tokens: {
-    //   accessToken: localStorage.accessToken ? localStorage.accessToken : '',
-    //   client: localStorage.client ? localStorage.client : '',
-    //   expiry: localStorage.expiry ? localStorage.expiry : '',
-    //   bearer: localStorage.bearer ? localStorage.bearer : '',
-    //   uid: localStorage.uid ? localStorage.uid : ''
-    // },
-    // user: {
-    //   id: localStorage.id ? localStorage.id : null,
-    //   user: localStorage.user ? localStorage.user : null,
-    //   email: localStorage.email ? localStorage.email : null
-    // }
+    tokens: {
+      accessToken: localStorage.accessToken ? localStorage.accessToken : '',
+      client: localStorage.client ? localStorage.client : '',
+      expiry: localStorage.expiry ? localStorage.expiry : '',
+      bearer: localStorage.bearer ? localStorage.bearer : '',
+      uid: localStorage.uid ? localStorage.uid : ''
+    },
+    user: {
+      id: localStorage.id ? localStorage.id : null,
+      user: localStorage.user ? localStorage.user : null,
+      email: localStorage.email ? localStorage.email : null
+    }
   },
 
   getters: {
@@ -47,13 +47,13 @@ const Store = new Vuex.Store({
       state.data = data
     },
     updateAuth (state, data) {
-      // localStorage.isAuth = data
+      localStorage.isAuth = data
       state.isAuth = data
     },
     updateUser (state, data) {
-      // localStorage.id = data.data['id']
-      // localStorage.user = data.data['name']
-      // localStorage.email = data.data['email']
+      localStorage.id = data.data.id
+      localStorage.user = data.data.name
+      localStorage.email = data.data.email
       state.user = {
         id: data.data.id,
         user: data.data.name,
@@ -61,11 +61,11 @@ const Store = new Vuex.Store({
       }
     },
     updateTokens (state, headers) {
-      // localStorage.accessToken = headers['access-token']
-      // localStorage.client = headers['client']
-      // localStorage.expiry = headers['expiry']
-      // localStorage.tokenType = headers['token-type']
-      // localStorage.uid = headers['uid']
+      localStorage.accessToken = headers['access-token']
+      localStorage.client = headers['client']
+      localStorage.expiry = headers['expiry']
+      localStorage.tokenType = headers['token-type']
+      localStorage.uid = headers['uid']
       state.tokens = {
         accessToken: headers['access-token'],
         client: headers['client'],
@@ -75,29 +75,27 @@ const Store = new Vuex.Store({
       }
     },
     clearLocalStorage () {
-      // localStorage.clear()
+      localStorage.clear()
     }
   },
 
   actions: {
     sign_up (context, params) {
-      console.log(context)
-      console.log(params)
-      params.password = ''
       return axios.post(API.sign_up, params)
-        .then(response => {
-          console.log(response.data)
-          // context.commit('updateUser', response.data)
-          // context.commit('updateAuth', true)
-          // context.commit('updateTokens', response.headers)
-        })
-    },
-    sign_in (context, params) {
-      return axios.post(API.sign_in, params)
         .then(response => {
           context.commit('updateUser', response.data)
           context.commit('updateAuth', true)
           context.commit('updateTokens', response.headers)
+        })
+    },
+    sign_in (context, params) {
+      console.log(params)
+      return axios.post(API.sign_in, params)
+        .then(response => {
+          console.log(response)
+        //   context.commit('updateUser', response.data)
+        //   context.commit('updateAuth', true)
+        //   context.commit('updateTokens', response.headers)
         })
     },
     sign_out (context) {
@@ -134,19 +132,19 @@ axios.interceptors.request.use(function (config) {
 })
 
 // Add a response interceptor
-// axios.interceptors.response.use(function (response) {
-//   Store.commit('alerts/setAlerts', response.data.alerts)
-//   Store.commit('errors/setErrors', response.data.errors)
-//   return response
-// }, function (error) {
-//   if (error.response === undefined) {
-//     Store.commit('errors/setErrors', 'Internal server error')
-//   } else {
-//     Store.commit('alerts/setAlerts', error.response.data.alerts)
-//     Store.commit('errors/setErrors', error.response.data.errors)
-//     return Promise.reject(error)
-//   }
-// })
+axios.interceptors.response.use(function (response) {
+  // Store.commit('alerts/setAlerts', response.data.alerts)
+  // Store.commit('errors/setErrors', response.data.errors)
+  return response
+}, function (error) {
+  if (error.response === undefined) {
+    Store.commit('errors/setErrors', 'Internal server error')
+  } else {
+    // Store.commit('alerts/setAlerts', error.response.data.alerts)
+    // Store.commit('errors/setErrors', error.response.data.errors)
+    return Promise.reject(error)
+  }
+})
 
 function setTokensInHeaders (config) {
   config.headers.common['access-token'] = 'localStorage.accessToken'
