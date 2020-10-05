@@ -35,7 +35,7 @@
         
         <app-flash></app-flash>
         <router-view/>
-        
+
       </md-app-content>
     </md-app>
   </div>

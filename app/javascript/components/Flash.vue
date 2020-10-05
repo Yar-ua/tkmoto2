@@ -1,6 +1,6 @@
 <template>
   <div>
-    <FlashMessage/>
+    <FlashMessage :position="'right bottom'"></FlashMessage>
   </div>
 </template>
 

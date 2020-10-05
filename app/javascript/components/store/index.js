@@ -99,12 +99,19 @@ const Store = new Vuex.Store({
         })
     },
     sign_out (context) {
-      return axios.delete(API.sign_out, '')
+      return axios.get(API.bikes, '')
         .then(response => {
-          context.commit('updateUser', {'data': {'id': '', 'name': '', 'email': ''}})
-          context.commit('updateAuth', false)
-          context.commit('updateTokens', response.headers)
-          context.commit('clearLocalStorage', '')
+          // context.commit('updateUser', {'data': {'id': '', 'name': '', 'email': ''}})
+          // context.commit('updateAuth', false)
+          // context.commit('updateTokens', response.headers)
+          // context.commit('clearLocalStorage', '')
+          console.log('store')
+          // this.flashMessage.show({
+          //   status: 'success',
+          //   title: 'Success',
+          //   message: 'You logouted cussessfully'
+          // })
+          this.$router.push({name: 'Home'})
         })
         .catch(err => {
           if (err.response.status !== 200) {
