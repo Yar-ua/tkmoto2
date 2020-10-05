@@ -20,7 +20,8 @@ export default {
   created() {
     axios
       .get('/bikes.json')
-      .then(response => (this.bikes = response.data))
+      .then(response => (
+        this.bikes = response.data))
       .catch(error => console.log(error));
   }
 //   computed: {

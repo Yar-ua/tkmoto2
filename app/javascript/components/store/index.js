@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import API from './api'
 
+import errors from './flash/errors'
 import bike from './bike'
 
 Vue.use(Vuex)
@@ -33,6 +34,7 @@ const Store = new Vuex.Store({
   },
 
   modules: {
+    errors
     // home,
     // bike,
     // fuel,
@@ -89,20 +91,16 @@ const Store = new Vuex.Store({
         })
     },
     sign_in (context, params) {
-      console.log(params)
       return axios.post(API.sign_in, params)
         .then(response => {
-          console.log(response)
           context.commit('updateUser', response.data)
           context.commit('updateAuth', true)
           context.commit('updateTokens', response.headers)
         })
     },
     sign_out (context) {
-      console.log('store sign out')
       return axios.delete(API.sign_out, '')
         .then(response => {
-          console.log(response)
           context.commit('updateUser', {'data': {'id': '', 'name': '', 'email': ''}})
           context.commit('updateAuth', false)
           context.commit('updateTokens', response.headers)
@@ -135,15 +133,13 @@ axios.interceptors.request.use(function (config) {
 
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
-  // Store.commit('alerts/setAlerts', response.data.alerts)
-  // Store.commit('errors/setErrors', response.data.errors)
   return response
 }, function (error) {
+  console.log(error)
   if (error.response === undefined) {
     Store.commit('errors/setErrors', 'Internal server error')
   } else {
-    // Store.commit('alerts/setAlerts', error.response.data.alerts)
-    // Store.commit('errors/setErrors', error.response.data.errors)
+    Store.commit('errors/setErrors', error.response.data.errors)
     return Promise.reject(error)
   }
 })
@@ -155,6 +151,7 @@ function setTokensInHeaders (config) {
   config.headers.common['token-type'] = localStorage.tokenType
   config.headers.common['uid'] = localStorage.uid
   config.headers.common['Content-Type'] = 'application/json'
+  config.headers.common['Access-Control-Allow-Origin'] = '*'
   return config
 }
 

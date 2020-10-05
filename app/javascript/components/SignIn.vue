@@ -69,56 +69,36 @@
     methods: {
       getValidationClass (fieldName) {
         const field = this.$v.form[fieldName]
-
         if (field) {
           return {
             'md-invalid': field.$invalid && field.$dirty
           }
         }
       },
+      
       signIn () {
         this.sending = true
-        console.log('sign-in')
-        this.$store.dispatch('sign_in', {   email: this.form.email, 
-                                            password: this.form.password
-                                        })
-        //   .then(() => {
-        //     this.hasError = false
-        //     this.flashMessage.show({
-        //       status: 'success',
-        //       title: 'Success',
-        //       message: 'You successfully registred already'
-        //     })
-        //     this.$router.push({name: 'Home'})
-        //   }).catch(err => {
-        //     if (err.response.status !== 200) {
-        //       this.hasError = true
-        //       this.flashMessage.show({
-        //         status: 'error',
-        //         title: 'Error',
-        //         message: 'You are not registred'
-        //       })
-        //     }
-        //   })
-        
-        
-        
-        
-        
-        
-        // Instead of this timeout, here you can call your API
-        // window.setTimeout(() => {
-        //   this.lastUser = `${this.form.name} ${this.form.lastName}`
-        //   this.userSaved = true
-        //   this.sending = false
-        //   this.clearForm()
-        // }, 1500)
+        this.$store.dispatch('sign_in', { email: this.form.email, password: this.form.password })
+          .then(() => {
+            this.hasError = false
+            this.flashMessage.show({
+              status: 'success',
+              title: 'Success',
+              message: 'You are successfully registred'
+            })
+            this.$router.push({name: 'Home'})
+          }).catch(err => {
+            if (err.response.status !== 200) {
+              this.hasError = true
+            }
+            this.sending = false
+          })
       },
+      
       validateUser () {
         this.$v.$touch()
 
         if (!this.$v.$invalid) {
-        //   this.saveUser()
           this.signIn()
         }
       }

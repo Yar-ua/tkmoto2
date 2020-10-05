@@ -33,6 +33,7 @@
 
       <md-app-content>
         
+        <app-flash></app-flash>
         <router-view/>
         
       </md-app-content>
@@ -47,6 +48,7 @@
 
 import Navigation from './components/Navigation'
 import NavLinks from './components/NavLinks'
+import Flash from './components/Flash'
 import Bikes from './components/bikes/Bikes'
 
 export default {
@@ -56,6 +58,7 @@ export default {
   components: {
     'app-navigation': Navigation,
     'app-navlinks': NavLinks,
+    'app-flash': Flash,
     'app-bikes': Bikes
   },
   props: {
