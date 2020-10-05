@@ -34,6 +34,7 @@ default: &default
     - .woff2
 
   extensions:
+    - .vue
     - .mjs
     - .js
     - .sass
@@ -58,9 +59,16 @@ development:
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
     https: false
+    ### Use this settings to start app in dev mode on Amazon Cloud9
     host: localhost
-    port: 3035
-    public: localhost:3035
+    port: 8082
+    public: https://c7c0e963d21a452eaa23596002aaa9b9.vfs.cloud9.eu-central-1.amazonaws.com:8082
+    ###
+    ### Use this settings if you want to use app on your local computer or in Docker
+    # host: localhost
+    # port: 3035
+    # public: localhost:3035
+    ###
     hmr: false
     # Inline should be set to true if using HMR
     inline: true
