@@ -1,13 +1,24 @@
 export default {
 
+  // POST sign up user
+  // sign_up: process.env.apiUrl + '/auth',
+  sign_up: '/auth',
+  
+  // POST sign in user
+  // sign_in: process.env.apiUrl + '/auth/sign_in'
+  sign_in: '/auth/sign_in',
+  
+  // DELETE sign uot user
+  sign_out: '/auth/sign_out',
+
   // GET about page
   about: process.env.apiUrl + '/about',
 
   // GET /bikes (index bikes)
   // POST /bikes (create bike)
-  bikes: process.env.apiUrl + '/bikes',
+  bikes: /* process.env.apiUrl +  */ '/bikes',
   // GET, PUT, DELETE /bike/:id (show, update, delete bike)
-  bike: (bikeId) => (process.env.apiUrl + '/bikes/#{id}').replace('#{id}', bikeId),
+  // bike: (bikeId) => (process.env.apiUrl + '/bikes/#{id}').replace('#{id}', bikeId),
 
   // GET, POST /bikes/:bike_id/fuels (index, create fuels)
 //   fuels: (bikeId) => (process.env.apiUrl + '/bikes/#{bike_id}' + '/fuels').replace('#{bike_id}', bikeId),

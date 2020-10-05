@@ -1,8 +1,8 @@
 <template>
-  <v-container fluid grid-list-lg>
-      <h4>{{ msg }}</h4>
-      <h6>{{ bikes }}</h6>
-  </v-container>
+  <div>
+    <h4>{{ msg }}</h4>
+    <h6>{{ bikes }}</h6>
+  </div>
 </template>
 
 <script>
@@ -20,7 +20,8 @@ export default {
   created() {
     axios
       .get('/bikes.json')
-      .then(response => (this.bikes = response.data))
+      .then(response => (
+        this.bikes = response.data))
       .catch(error => console.log(error));
   }
 //   computed: {

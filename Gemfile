@@ -59,3 +59,4 @@ gem 'will_paginate-bootstrap'
 # for starting frontend and backend together
 gem 'foreman'
 gem 'devise_token_auth'
+gem 'rack-cors'
