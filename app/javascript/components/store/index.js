@@ -103,10 +103,10 @@ const Store = new Vuex.Store({
       return axios.delete(API.sign_out, '')
         .then(response => {
           console.log(response)
-          // context.commit('updateUser', {'data': {'id': '', 'name': '', 'email': ''}})
-          // context.commit('updateAuth', false)
-          // context.commit('updateTokens', response.headers)
-          // context.commit('clearLocalStorage', '')
+          context.commit('updateUser', {'data': {'id': '', 'name': '', 'email': ''}})
+          context.commit('updateAuth', false)
+          context.commit('updateTokens', response.headers)
+          context.commit('clearLocalStorage', '')
         })
         .catch(err => {
           if (err.response.status !== 200) {
@@ -149,11 +149,11 @@ axios.interceptors.response.use(function (response) {
 })
 
 function setTokensInHeaders (config) {
-  config.headers.common['access-token'] = 'localStorage.accessToken'
-  config.headers.common['client'] = 'localStorage.client'
-  config.headers.common['expiry'] = 'localStorage.expiry'
-  config.headers.common['token-type'] = 'localStorage.tokenType'
-  config.headers.common['uid'] = 'localStorage.uid'
+  config.headers.common['access-token'] = localStorage.accessToken
+  config.headers.common['client'] = localStorage.client
+  config.headers.common['expiry'] = localStorage.expiry
+  config.headers.common['token-type'] = localStorage.tokenType
+  config.headers.common['uid'] = localStorage.uid
   config.headers.common['Content-Type'] = 'application/json'
   return config
 }

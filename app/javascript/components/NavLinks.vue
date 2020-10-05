@@ -27,14 +27,14 @@ export default {
     logoutAction: function () {
       console.log('logout action')
       this.$store.dispatch('sign_out', '')
-        .then(() => {
-          this.$router.push({name: 'Home'})
+        // .then(() => {
+        //   this.$router.push({name: 'Home'})
           // this.flashMessage.show({
           //   status: 'success',
           //   title: 'Success',
           //   message: 'You logouted cussessfully'
           // })
-        })
+        // })
     }
   }
 }
