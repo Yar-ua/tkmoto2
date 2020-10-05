@@ -99,19 +99,12 @@ const Store = new Vuex.Store({
         })
     },
     sign_out (context) {
-      return axios.get(API.bikes, '')
-        .then(response => {
-          // context.commit('updateUser', {'data': {'id': '', 'name': '', 'email': ''}})
-          // context.commit('updateAuth', false)
-          // context.commit('updateTokens', response.headers)
-          // context.commit('clearLocalStorage', '')
-          console.log('store')
-          // this.flashMessage.show({
-          //   status: 'success',
-          //   title: 'Success',
-          //   message: 'You logouted cussessfully'
-          // })
-          this.$router.push({name: 'Home'})
+      return axios.delete(API.sign_out, '')
+        .then((response) => {
+          context.commit('updateUser', {'data': {'id': '', 'name': '', 'email': ''}})
+          context.commit('updateAuth', false)
+          context.commit('updateTokens', response.headers)
+          context.commit('clearLocalStorage', '')
         })
         .catch(err => {
           if (err.response.status !== 200) {
@@ -142,12 +135,11 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (response) {
   return response
 }, function (error) {
-  console.log(error)
   if (error.response === undefined) {
     Store.commit('errors/setErrors', 'Internal server error')
   } else {
     Store.commit('errors/setErrors', error.response.data.errors)
-    return Promise.reject(error)
+    // return Promise.reject(error)
   }
 })
 

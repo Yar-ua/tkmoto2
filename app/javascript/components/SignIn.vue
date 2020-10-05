@@ -79,12 +79,12 @@
       signIn () {
         this.sending = true
         this.$store.dispatch('sign_in', { email: this.form.email, password: this.form.password })
-          .then(() => {
+          .then(response => {
             this.hasError = false
             this.flashMessage.show({
               status: 'success',
               title: 'Success',
-              message: 'You are successfully registred'
+              message: 'You are successfully signed in'
             })
             this.$router.push({name: 'Home'})
           }).catch(err => {

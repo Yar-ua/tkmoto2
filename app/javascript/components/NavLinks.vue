@@ -15,7 +15,8 @@ import { mapState } from 'vuex'
 export default {
   name: 'NavLinks',
   data: () => ({
-    drawer: false
+    drawer: false,
+    flash: false
   }),
   computed: {
     ...mapState({
@@ -26,19 +27,14 @@ export default {
   methods: {
     logoutAction: function () {
       this.$store.dispatch('sign_out', '')
-        .then((response) => {
-          // if (response.status == 200) {
-            this.$router.push({name: 'Home'})
-            this.flashMessage.show({
-              status: 'success',
-              title: 'Success',
-              message: 'You logouted cussessfully'
-          })
-          // }
-      }).catch(err => {
-        if (err.response.status !== 200) {
-          this.hasError = true
-        }
+      
+      .then((response) => {
+        this.$router.push({name: 'Home'})
+        this.flashMessage.show({
+          status: 'success',
+          title: 'Success',
+          message: 'You logouted cussessfully'
+        })
       })
     }
   }
