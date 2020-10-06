@@ -54,3 +54,5 @@ $ rails server  #- to starting rails
 $ bin/webpack-dev-server  #- to starting webpacker
 
 You must start rails server and webpack-dev-server together (if you use webpacker:vue like frontend, not Rails ActionView)
+
+As frontedn framework usinf Vue + Vue Material

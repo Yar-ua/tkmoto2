@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 2020_09_30_114752) do
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
     t.string "name"
-    t.string "nickname"
     t.string "image"
     t.string "email"
     t.json "tokens"

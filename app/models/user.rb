@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   
   validates :name, presence: true
   validates :email, presence: true
-  validates :password, presence: true
+  # if validate password, than during 'sign_out' password will be validated and you'll have validation error
+  # validates :password, presence: true
   validates :email, uniqueness: {message: 'Current email already exists, try another'}
   validates :name, uniqueness: {message: 'Current name already exists, try another'}
 end
