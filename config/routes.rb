@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount_devise_token_auth_for 'User', at: 'auth'
 
   root to: 'bikes#index'
 
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   match 'about', to: 'home#about', via: [:get]
+  match 'secure', to: 'home#secure', via: [:get]
 
 
 end

@@ -3,9 +3,9 @@
 #
 require 'faker'
 
-# 1.times do
+3.times do
   bike = FactoryBot.create(:bike)
   # 5.times do
   #   FactoryBot.create(:fuel, bike: bike)
   # end
-# end
+end

@@ -1,11 +1,12 @@
 class BikesController < ApplicationController
-
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_bike, only: [:show, :edit, :update, :destroy]
 
   # GET /bikes
   # GET /bikes.json
   def index
-    @bikes = Bike.all.paginate(page: params[:page], per_page: 10)
+    @bikes = Bike.all #.paginate(page: params[:page], per_page: 10)
+    # render json: @bikes
   end
 
   # GET /bikes/new
@@ -16,6 +17,7 @@ class BikesController < ApplicationController
   # GET /bikes/1
   # GET /bikes/1.json
   def show
+    render json: @bike
   end
 
   # GET /bikes/1/edit
@@ -24,51 +26,39 @@ class BikesController < ApplicationController
 
 
   # POST /bikes
-  # POST /bikes.json
+  # response :json
   def create
-    @bike = Bike.new(bike_params)
-    respond_to do |format|
-      if @bike.save
-        format.html { 
-          flash[:success] = 'Bike was successfully created'
-          redirect_to bikes_path 
-        }
-        format.json { render :show, status: :created, location: @bike }
-      else
-        format.html { render :new }
-        format.json { render json: @bike.errors, status: :unprocessable_entity }
-      end
+    @bike = current_user.bikes.build(bike_params)
+    if @bike.save
+      render json: { bike: @bike, status: 200 }
+    else
+      render json: { errors: @bike.errors, status: 422 }, status: 422
     end
   end
 
 
   # PATCH/PUT /bikes/1
-  # PATCH/PUT /bikes/1.json
+  # response :json
   def update
-    respond_to do |format|
+    if current_user.id === @bike.user_id
       if @bike.update(bike_params)
-        format.html { 
-          flash[:success] = 'Bike was successfully updated'
-          redirect_to bikes_path 
-        }
-        format.json { render :show, status: :ok, location: @bike }
+        render json: { bike: @bike, status: 200 }
       else
-        format.html { render 'edit' }
-        format.json { head :no_content }
+        render json: { errors: @bike.errors, status: 422 }, status: 422
       end
+    else
+      render json: { errors: 'You have not credentials', status: 422 }, status: 422
     end
   end
 
   # DELETE /bikes/1
   # DELETE /bikes/1.json
   def destroy
-    @bike.destroy
-    respond_to do |format|
-      format.html { 
-        flash[:success] = 'Bike was successfully deleted'
-        redirect_to bikes_url
-        }
-      format.json { head :no_content }
+    if current_user.id === @bike.user_id
+      @bike.destroy
+      render json: { success: true, status: 200 }
+    else
+      render json: { errors: 'You have not credentials', status: 422 }, status: 422
     end
   end
 
@@ -76,6 +66,8 @@ class BikesController < ApplicationController
 
     def set_bike
       @bike = Bike.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        render json: { error: "bike not found" }, status: :not_found
     end
 
     def bike_params
