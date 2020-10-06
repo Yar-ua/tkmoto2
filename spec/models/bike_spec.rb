@@ -2,16 +2,16 @@ require 'rails_helper'
 
 RSpec.describe Bike, type: :model do
 
-#   let(:user) {FactoryBot.create(:user)}
-#   let(:bike) {FactoryBot.create(:bike, :user => user)}
-  let(:bike) {FactoryBot.create(:bike)}
+  let(:user) {FactoryBot.create(:user)}
+  let(:bike) {FactoryBot.create(:bike, :user => user)}
 
-#   it 'user after Factory valid with valid attributes' do
-#     expect(user).to be_valid
-#   end
+  it 'user after Factory valid with valid attributes' do
+    expect(user).to be_valid
+  end
 
-  it 'bike after Factory valid with valid attributes' do
-    expect(bike).to be_valid
+  describe 'bike after Factory valid with valid attributes' do
+    it { expect(bike).to be_valid }
+    it { expect(bike.user).to be_valid }
   end
 
   subject { lot }
@@ -21,6 +21,7 @@ RSpec.describe Bike, type: :model do
     it { expect(:volume).to be}
     it { expect(:year).to be}
     it { expect(:colour).to be}
+    it { expect(:user_id).to be}
     it { expect(:created_at).to be}
     it { expect(:updated_at).to be}
   end

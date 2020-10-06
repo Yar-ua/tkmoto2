@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
   
+  has_many :bikes, dependent: :destroy
+  
   
   validates :name, presence: true
   validates :email, presence: true

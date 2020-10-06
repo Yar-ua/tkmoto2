@@ -5,12 +5,14 @@
     <md-tab id="tab-signin" md-label="Sign-in" :to="{name: 'SignIn'}"></md-tab>
     <md-tab id="tab-signup" md-label="Sign-up" :to="{name: 'SignUp'}"></md-tab>
     <md-tab id="tab-signout" md-label="Log-out" @click="logoutAction"></md-tab>
+    <md-tab id="tab-signout" md-label="test" @click="testAction"></md-tab>
   </md-tabs>
 </template>
 
 
 <script>
 import { mapState } from 'vuex'
+import axios from 'axios'
 
 export default {
   name: 'NavLinks',
@@ -36,6 +38,12 @@ export default {
           message: 'You logouted cussessfully'
         })
       })
+    },
+    testAction () {
+      return axios.get('/bikes/1', '')
+        .then(response => {
+          console.log(response)
+        })
     }
   }
 }
