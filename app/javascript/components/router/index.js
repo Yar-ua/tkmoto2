@@ -7,7 +7,9 @@ import About from '../home/About'
 import Page404 from '../Page404'
 import SignIn from '../SignIn'
 import SignUp from '../SignUp'
+
 import Bikes from '../bikes/Bikes'
+import BikesSheet from '../bikes/BikesSheet'
 
 Vue.use(Router)
 
@@ -42,7 +44,7 @@ export default new Router({
       path: '/sign_in',
       name: 'SignIn',
       component: SignIn
-    }
+    },
     // {
     //   path: '/no_permission',
     //   name: 'PageNoPermission',
@@ -50,15 +52,15 @@ export default new Router({
     // },
     // // bikes CRUD
     // // index
-    // {
-    //   path: '/bikes',
-    //   component: BikesSheet,
-    //   children: [
-    //     {
-    //       path: '',
-    //       name: 'Bikes',
-    //       component: Bikes
-    //     },
+    {
+      path: '/bikes',
+      component: BikesSheet,
+      children: [
+        {
+          path: '',
+          name: 'Bikes',
+          component: Bikes
+        },
     //     {
     //       path: ':id(\\d+|new)',
     //       name: 'BikeForm',
@@ -98,7 +100,7 @@ export default new Router({
     //         }
     //       ]
     //     }
-    //   ]
-    // }
+      ]
+    }
   ]
 })

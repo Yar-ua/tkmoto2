@@ -19,7 +19,7 @@ export default {
   },
   created() {
     axios
-      .get('/bikes.json')
+      .get('/bikes')
       .then(response => (
         this.bikes = response.data))
       .catch(error => console.log(error));

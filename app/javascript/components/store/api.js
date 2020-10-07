@@ -12,11 +12,11 @@ export default {
   sign_out: '/auth/sign_out',
 
   // GET about page
-  about: process.env.apiUrl + '/about',
+  about: '/about',
 
   // GET /bikes (index bikes)
   // POST /bikes (create bike)
-  bikes: /* process.env.apiUrl +  */ '/bikes',
+  bikes: '/bikes',
   // GET, PUT, DELETE /bike/:id (show, update, delete bike)
   // bike: (bikeId) => (process.env.apiUrl + '/bikes/#{id}').replace('#{id}', bikeId),
 

@@ -37,12 +37,13 @@ export default {
 
   actions: {
     index (context) {
-      context.commit('setLoading', true)
-      return axios.get(API.bikes)
-        .then(response => {
-          context.commit('setBikesList', response.data.data)
-          context.commit('updateAddItem', {})
-        })
+      console.log('bikes api')
+      // context.commit('setLoading', true)
+      // return axios.get(API.bikes)
+      //   .then(response => {
+      //     context.commit('setBikesList', response.data)
+      //     context.commit('updateAddItem', {})
+      //   })
     },
     // show (context, params) {
     //   return axios.get(API.bike(params.id), '')

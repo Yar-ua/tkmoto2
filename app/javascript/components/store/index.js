@@ -13,7 +13,7 @@ Vue.use(Vuex)
 
 const Store = new Vuex.Store({
   state: {
-    isAuth: !!localStorage.isAuth,
+    isAuth: localStorage.isAuth == 'true' ? true : false,
     data: '',
     tokens: {
       accessToken: localStorage.accessToken ? localStorage.accessToken : '',
@@ -34,9 +34,9 @@ const Store = new Vuex.Store({
   },
 
   modules: {
-    errors
+    errors,
     // home,
-    // bike,
+    bike
     // fuel,
     // repair,
     // oil,

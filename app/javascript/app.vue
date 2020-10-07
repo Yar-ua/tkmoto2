@@ -35,7 +35,8 @@
         
         <app-flash></app-flash>
         <router-view/>
-
+        <p>{{ message }} || {{ !!isAuth }} || {{ user }} -------</p>
+        
       </md-app-content>
     </md-app>
   </div>
@@ -45,6 +46,8 @@
 </template>
 
 <script>
+
+import { mapState } from 'vuex'
 
 import Navigation from './components/Navigation'
 import NavLinks from './components/NavLinks'
@@ -67,7 +70,13 @@ export default {
   data: () => ({
     message: "Hello Vue!",
     menuVisible: false
-  })
+  }),
+  computed: {
+    ...mapState({
+      user: 'user'
+    }),
+    isAuth () { return this.$store.getters.isAuth }
+  },
 }
 </script>
 
