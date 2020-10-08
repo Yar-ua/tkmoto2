@@ -151,6 +151,7 @@ function setTokensInHeaders (config) {
   config.headers.common['uid'] = localStorage.uid
   config.headers.common['Content-Type'] = 'application/json'
   config.headers.common['Access-Control-Allow-Origin'] = '*'
+  config.headers.common['Content-Type'] = 'application/json'
   return config
 }
 

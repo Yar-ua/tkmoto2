@@ -23,8 +23,9 @@
         </md-card-content>
 
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
-
+        
         <md-card-actions>
+          <md-button :disabled="sending" :to="{name: 'Bikes'}">Back</md-button>
           <md-button type="submit" class="md-primary" :disabled="sending">Sign-in</md-button>
         </md-card-actions>
       </md-card>
@@ -43,7 +44,7 @@
   } from 'vuelidate/lib/validators'
 
   export default {
-    name: 'FormValidation',
+    name: 'SignIn',
     mixins: [validationMixin],
     data: () => ({
       form: {

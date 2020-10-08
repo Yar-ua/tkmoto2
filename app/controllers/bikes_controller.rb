@@ -2,22 +2,30 @@ class BikesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_bike, only: [:show, :edit, :update, :destroy]
 
-  # GET /bikes
   # GET /bikes.json
   def index
     @bikes = Bike.all #.paginate(page: params[:page], per_page: 10)
-    # render json: @bikes
+    respond_to do |format|
+      format.html
+      format.json { render json: @bikes }
+    end
   end
 
   # GET /bikes/new
   def new
     @bike = Bike.new
+    respond_to do |format|
+      format.html
+      format.json { render json: @bike }
+    end
   end
   
-  # GET /bikes/1
   # GET /bikes/1.json
   def show
-    render json: @bike
+    respond_to do |format|
+      format.html
+      format.json { render json: @bike }
+    end
   end
 
   # GET /bikes/1/edit
@@ -25,20 +33,24 @@ class BikesController < ApplicationController
   end
 
 
-  # POST /bikes
-  # response :json
+  # POST /bikes.json
   def create
     @bike = current_user.bikes.build(bike_params)
     if @bike.save
-      render json: { bike: @bike, status: 200 }
+      respond_to do |format|
+        format.html
+        format.json { render @bike, status: 200 }
+      end
     else
-      render json: { errors: @bike.errors, status: 422 }, status: 422
+      respond_to do |format|
+        format.html
+        format.json { render @bike.errors, status: 422 }
+      end
     end
   end
 
 
-  # PATCH/PUT /bikes/1
-  # response :json
+  # PATCH/PUT /bikes/1.json
   def update
     if current_user.id === @bike.user_id
       if @bike.update(bike_params)
@@ -51,7 +63,6 @@ class BikesController < ApplicationController
     end
   end
 
-  # DELETE /bikes/1
   # DELETE /bikes/1.json
   def destroy
     if current_user.id === @bike.user_id

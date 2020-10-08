@@ -30,12 +30,12 @@
           <app-navigation></app-navigation>
         </md-list>
       </md-app-drawer>
-
+      
       <md-app-content>
         
+        <p>{{ message }} :/ isAuth: {{ isAuth }} || user: {{ user }} -------</p>
         <app-flash></app-flash>
         <router-view/>
-        <p>{{ message }} || {{ !!isAuth }} || {{ user }} -------</p>
         
       </md-app-content>
     </md-app>
@@ -68,7 +68,7 @@ export default {
     source: String
   },
   data: () => ({
-    message: "Hello Vue!",
+    message: "Debug info",
     menuVisible: false
   }),
   computed: {

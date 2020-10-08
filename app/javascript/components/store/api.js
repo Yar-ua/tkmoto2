@@ -16,7 +16,7 @@ export default {
 
   // GET /bikes (index bikes)
   // POST /bikes (create bike)
-  bikes: '/bikes',
+  bikes: '/bikes.json',
   // GET, PUT, DELETE /bike/:id (show, update, delete bike)
   // bike: (bikeId) => (process.env.apiUrl + '/bikes/#{id}').replace('#{id}', bikeId),
 

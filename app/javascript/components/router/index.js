@@ -4,12 +4,16 @@ import Router from 'vue-router'
 
 // by default if you write import xxx from '../bikes' it means 
 import About from '../home/About'
-import Page404 from '../Page404'
+import Page404 from '../static/Page404'
+import PageNoPermission from '../static/PageNoPermission'
 import SignIn from '../SignIn'
 import SignUp from '../SignUp'
 
 import Bikes from '../bikes/Bikes'
 import BikesSheet from '../bikes/BikesSheet'
+import BikeForm from '../bikes/BikeForm'
+
+import store from '../store'
 
 Vue.use(Router)
 
@@ -45,11 +49,11 @@ export default new Router({
       name: 'SignIn',
       component: SignIn
     },
-    // {
-    //   path: '/no_permission',
-    //   name: 'PageNoPermission',
-    //   component: PageNoPermission
-    // },
+    {
+      path: '/no_permission',
+      name: 'PageNoPermission',
+      component: PageNoPermission
+    },
     // // bikes CRUD
     // // index
     {
@@ -61,18 +65,18 @@ export default new Router({
           name: 'Bikes',
           component: Bikes
         },
-    //     {
-    //       path: ':id(\\d+|new)',
-    //       name: 'BikeForm',
-    //       component: BikeForm,
-    //       beforeEnter (to, from, next) {
-    //         if (store.getters.isAuth) {
-    //           next()
-    //         } else {
-    //           next('/no_permission')
-    //         }
-    //       }
-    //     },
+        {
+          path: ':id(\\d+|new)',
+          name: 'BikeForm',
+          component: BikeForm,
+          beforeEnter (to, from, next) {
+            if (store.getters.isAuth) {
+              next()
+            } else {
+              next('/no_permission')
+            }
+          }
+        },
     //     {
     //       path: ':id(\\d+)/show',
     //       name: 'BikeItem',

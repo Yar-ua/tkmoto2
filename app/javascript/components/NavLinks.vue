@@ -5,6 +5,7 @@
     <md-tab id="tab-logout" md-label="Log-out" @click="logoutAction"></md-tab>
     <md-tab v-if=!isAuth id="tab-signup" md-label="Sign-up" :to="{name: 'SignUp'}"></md-tab>    
     <md-tab v-if=!isAuth id="tab-signin" md-label="Sign-in" :to="{name: 'SignIn'}"></md-tab>
+    <md-tab id="tab-test" md-label="test" @click="testAction"></md-tab>
   </md-tabs>
 </template>
 
@@ -36,6 +37,13 @@ export default {
           message: 'You logouted cussessfully'
         })
       })
+    },
+    testAction: function () {
+      console.log('test action')
+      axios.get('/bikes/1.json', '')
+        .then(response => {
+          console.log(response)
+        })
     }
   }
 }
