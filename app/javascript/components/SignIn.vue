@@ -79,7 +79,8 @@
       
       signIn () {
         this.sending = true
-        this.$store.dispatch('sign_in', { email: this.form.email, password: this.form.password })
+        var params = {email: this.form.email, password: this.form.password}
+        this.$store.dispatch('sign_in', params)
           .then(response => {
             this.hasError = false
             this.flashMessage.show({

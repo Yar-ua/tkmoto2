@@ -106,8 +106,8 @@
       },
       saveUser () {
         this.sending = true
-        this.$store.dispatch('sign_up', 
-          {name: this.form.name, email: this.form.email, password: this.form.password, password_confirmation: this.form.passwordConfirmation})
+        var params = {name: this.form.name, email: this.form.email, password: this.form.password, password_confirmation: this.form.passwordConfirmation}
+        this.$store.dispatch('sign_up', params)
           .then(() => {
             this.hasError = false
             this.flashMessage.show({

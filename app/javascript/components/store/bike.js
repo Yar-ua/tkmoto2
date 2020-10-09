@@ -50,13 +50,14 @@ export default {
     //       context.commit('updateAddItem', response.data.data)
     //     })
     // },
-    // create (context, params) {
-    //   return axios.post(API.bikes, params)
-    //     .then(response => {
-    //       context.commit('updateAddItem', response.data.data)
-    //       context.commit('updateBikesList', response.data.data)
-    //     })
-    // },
+    create (context, params) {
+      return axios.post(API.bikes, params)
+        .then(response => {
+          console.log(response)
+          context.commit('updateAddItem', response.data.data)
+          context.commit('updateBikesList', response.data.data)
+        })
+    },
     // update (context, params) {
     //   return axios.put(API.bike(params.id), params)
     //     .then(response => {

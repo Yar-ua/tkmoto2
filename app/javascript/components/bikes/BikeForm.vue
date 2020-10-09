@@ -113,24 +113,22 @@
       },
       saveBike () {
         this.sending = true
-        console.log('sending')
-        console.log(this.form)
-        // this.$store.dispatch('sign_up', 
-        //   {name: this.form.name, email: this.form.email, password: this.form.password, password_confirmation: this.form.passwordConfirmation})
-        //   .then(() => {
-        //     this.hasError = false
-        //     this.flashMessage.show({
-        //       status: 'success',
-        //       title: 'Success',
-        //       message: 'You was successfully registred'
-        //     })
-        //     this.$router.push({name: 'Home'})
-        //   }).catch(err => {
-        //     if (err.response.status !== 200) {
-        //       this.hasError = true
-        //     }
-        //     this.sending = false
-        //   })
+        var params = {name: this.form.name, color: this.form.color, year: "", volume: this.form.volume}
+        this.$store.dispatch('bike/create', {bike: params})
+          // .then(() => {
+          //   this.hasError = false
+          //   this.flashMessage.show({
+          //     status: 'success',
+          //     title: 'Success',
+          //     message: 'You was successfully registred'
+          //   })
+          //   this.$router.push({name: 'Home'})
+          // }).catch(err => {
+          //   if (err.response.status !== 200) {
+          //     this.hasError = true
+          //   }
+          //   this.sending = false
+          // })
       },
       validateBike () {
         this.$v.$touch()
