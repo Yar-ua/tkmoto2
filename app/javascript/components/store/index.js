@@ -36,11 +36,11 @@ const Store = new Vuex.Store({
   modules: {
     errors,
     // home,
-    bike
+    bike,
     // fuel,
     // repair,
     // oil,
-    // errors,
+    errors
     // alerts
   },
 
@@ -139,7 +139,7 @@ axios.interceptors.response.use(function (response) {
     Store.commit('errors/setErrors', 'Internal server error')
   } else {
     Store.commit('errors/setErrors', error.response.data.errors)
-    // return Promise.reject(error)
+    return Promise.reject(error)
   }
 })
 

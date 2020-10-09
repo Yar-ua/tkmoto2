@@ -12,18 +12,20 @@ import SignUp from '../SignUp'
 import Bikes from '../bikes/Bikes'
 import BikesSheet from '../bikes/BikesSheet'
 import BikeForm from '../bikes/BikeForm'
+import BikeItem from '../bikes/BikeItem'
 
 import store from '../store'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
-    {
-      path: '/home',
-      name: 'Home',
-      component: Bikes
-    },
+    // {
+    //   path: '/home',
+    //   name: 'Home',
+    //   component: Bikes
+    // },
     {
       path: '/about',
       name: 'About',
@@ -66,7 +68,8 @@ export default new Router({
           component: Bikes
         },
         {
-          path: ':id(\\d+|new)',
+          // path: ':id(\\d+|new)',
+          path: ':id(\\d+/edit|new)',
           name: 'BikeForm',
           component: BikeForm,
           beforeEnter (to, from, next) {
@@ -77,10 +80,10 @@ export default new Router({
             }
           }
         },
-    //     {
-    //       path: ':id(\\d+)/show',
-    //       name: 'BikeItem',
-    //       component: BikeItem,
+        {
+          path: ':id(\\d+)',
+          name: 'BikeItem',
+          component: BikeItem
     //       children: [
     //         {
     //           path: 'config',
@@ -103,7 +106,7 @@ export default new Router({
     //           component: Oil
     //         }
     //       ]
-    //     }
+        }
       ]
     }
   ]

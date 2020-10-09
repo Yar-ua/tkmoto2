@@ -25,7 +25,7 @@
           <md-card-expand>
             <md-card-actions md-alignment="space-between">
               <div>
-                <md-button>More</md-button>
+                <md-button :to="{name: 'BikeItem', params: {id: item.id}}">More</md-button>
                 <md-button>Action</md-button>
               </div>
 

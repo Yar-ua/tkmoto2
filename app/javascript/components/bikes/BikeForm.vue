@@ -113,22 +113,22 @@
       },
       saveBike () {
         this.sending = true
-        var params = {name: this.form.name, color: this.form.color, year: "", volume: this.form.volume}
+        var params = {name: this.form.name, color: this.form.color, year: this.form.year, volume: this.form.volume}
         this.$store.dispatch('bike/create', {bike: params})
-          // .then(() => {
-          //   this.hasError = false
-          //   this.flashMessage.show({
-          //     status: 'success',
-          //     title: 'Success',
-          //     message: 'You was successfully registred'
-          //   })
-          //   this.$router.push({name: 'Home'})
-          // }).catch(err => {
-          //   if (err.response.status !== 200) {
-          //     this.hasError = true
-          //   }
-          //   this.sending = false
-          // })
+          .then(() => {
+            this.hasError = false
+            this.flashMessage.show({
+              status: 'success',
+              title: 'Success',
+              message: 'You was successfully registred'
+            })
+            this.$router.push({name: 'Bikes'})
+          }).catch(err => {
+            if (err.response.status !== 200) {
+              this.hasError = true
+            }
+            this.sending = false
+          })
       },
       validateBike () {
         this.$v.$touch()

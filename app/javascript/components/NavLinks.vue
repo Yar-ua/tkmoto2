@@ -1,6 +1,6 @@
 <template>
   <md-tabs class="md-primary">
-    <md-tab id="tab-home" md-label="Home" :to="{name: 'Home'}"></md-tab>
+    <md-tab id="tab-bikes" md-label="Bikes" :to="{name: 'Bikes'}"></md-tab>
     <md-tab id="tab-about" md-label="About" :to="{name: 'About'}"></md-tab>
     <md-tab id="tab-logout" md-label="Log-out" @click="logoutAction"></md-tab>
     <md-tab v-if=!isAuth id="tab-signup" md-label="Sign-up" :to="{name: 'SignUp'}"></md-tab>    

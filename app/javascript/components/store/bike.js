@@ -44,12 +44,13 @@ export default {
           context.commit('updateAddItem', {})
         })
     },
-    // show (context, params) {
-    //   return axios.get(API.bike(params.id), '')
-    //     .then(response => {
-    //       context.commit('updateAddItem', response.data.data)
-    //     })
-    // },
+    show (context, params) {
+      return axios.get(API.bike(params.id), '')
+        .then(response => {
+          console.log(response)
+          context.commit('updateAddItem', response.data)
+        })
+    },
     create (context, params) {
       return axios.post(API.bikes, params)
         .then(response => {
