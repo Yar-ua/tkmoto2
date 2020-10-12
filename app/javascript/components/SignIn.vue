@@ -88,7 +88,7 @@
               title: 'Success',
               message: 'You are successfully signed in'
             })
-            this.$router.push({name: 'Home'})
+            this.$router.push({name: 'Bikes'})
           }).catch(err => {
             if (err.response.status !== 200) {
               this.hasError = true

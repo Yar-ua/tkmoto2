@@ -115,7 +115,7 @@
               title: 'Success',
               message: 'You was successfully registred'
             })
-            this.$router.push({name: 'Home'})
+            this.$router.push({name: 'Bikes'})
           }).catch(err => {
             if (err.response.status !== 200) {
               this.hasError = true

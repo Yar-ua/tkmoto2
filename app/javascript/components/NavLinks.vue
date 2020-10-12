@@ -30,7 +30,7 @@ export default {
       this.$store.dispatch('sign_out', '')
       
       .then((response) => {
-        this.$router.push({name: 'Home'})
+        this.$router.push({name: 'Bikes'})
         this.flashMessage.show({
           status: 'success',
           title: 'Success',

@@ -50,7 +50,6 @@
         </md-card-actions>
       </md-card>
 
-      <md-snackbar :md-active.sync="bikeSaved">The bike {{ lastBike }} was saved with success!</md-snackbar>
     </form>
   </div>
 </template>
@@ -79,6 +78,9 @@
       ...mapState({
         user: 'user'
       }),
+    ...mapState('bike', {
+      item: 'addItem'
+    }),
     isAuth () { return this.$store.getters.isAuth }
     },
     validations: {

@@ -10,7 +10,7 @@
     </div>
     <template>
       <div class="card-expansion">
-        <md-card v-for="item in bikesList" :key="item.message">
+        <md-card v-for="item in bikesList" :key="item.id">
           <md-card-media>
             <!--<img src="/assets/examples/card-image-1.jpg" alt="People">-->
           </md-card-media>
@@ -20,12 +20,14 @@
             <div class="md-subhead">color: {{ item.color }}</div>
             <div class="md-subhead">year: {{ item.year }}</div>
             <div class="md-subhead">engine volume, ccm: {{ item.volume }}</div>
+            <div class="md-subhead">id: {{ item.id }}</div>
           </md-card-header>
 
           <md-card-expand>
             <md-card-actions md-alignment="space-between">
               <div>
-                <md-button :to="{name: 'BikeItem', params: {id: item.id}}">More</md-button>
+                <!--<md-button :to="{name: 'BikeItem', params: {id: item.id}}">More</md-button>-->
+                <md-button @click="bikeShow(item.id)">More</md-button>
                 <md-button>Action</md-button>
               </div>
 
@@ -67,6 +69,11 @@ export default {
       user: 'user'
     }),
     isAuth () { return this.$store.getters.isAuth }
+  },
+  methods: {
+    bikeShow (id) {
+      this.$router.push({ name: 'BikeItem', params: {id: id} })
+    }
   },
   created () {
     this.$store.dispatch('bike/index', '')

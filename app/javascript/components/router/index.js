@@ -19,7 +19,7 @@ import store from '../store'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: [
     // {
     //   path: '/home',
@@ -32,15 +32,9 @@ export default new Router({
       component: About
     },
     {
-      path: '/',
-      name: 'Bikes',
-      component: Bikes
+      path: '/', 
+      redirect: { name: 'Bikes' }
     },    
-    {
-      path: '*',
-      name: 'Page404',
-      component: Page404
-    },
     {
       path: '/sign_up',
       name: 'SignUp',
@@ -56,8 +50,7 @@ export default new Router({
       name: 'PageNoPermission',
       component: PageNoPermission
     },
-    // // bikes CRUD
-    // // index
+    // bikes CRUD
     {
       path: '/bikes',
       component: BikesSheet,
@@ -68,8 +61,7 @@ export default new Router({
           component: Bikes
         },
         {
-          // path: ':id(\\d+|new)',
-          path: ':id(\\d+/edit|new)',
+          path: 'new',
           name: 'BikeForm',
           component: BikeForm,
           beforeEnter (to, from, next) {
@@ -81,33 +73,17 @@ export default new Router({
           }
         },
         {
-          path: ':id(\\d+)',
+          path: ':id',
           name: 'BikeItem',
-          component: BikeItem
-    //       children: [
-    //         {
-    //           path: 'config',
-    //           name: 'BikeConfig',
-    //           component: BikeConfig
-    //         },
-    //         {
-    //           path: 'fuels',
-    //           name: 'Fuels',
-    //           component: Fuels
-    //         },
-    //         {
-    //           path: 'repairs',
-    //           name: 'Repairs',
-    //           component: Repairs
-    //         },
-    //         {
-    //           path: 'oil',
-    //           name: 'Oil',
-    //           component: Oil
-    //         }
-    //       ]
+          component: BikeItem,
+          props: { default: true }
         }
       ]
+    },
+    {
+      path: '*',
+      name: 'Page404',
+      component: Page404
     }
   ]
 })
