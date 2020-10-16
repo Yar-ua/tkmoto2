@@ -13,6 +13,7 @@ import Bikes from '../bikes/Bikes'
 import BikesSheet from '../bikes/BikesSheet'
 import BikeForm from '../bikes/BikeForm'
 import BikeItem from '../bikes/BikeItem'
+import Test from '../bikes/Test'
 
 import store from '../store'
 
@@ -61,6 +62,11 @@ export default new Router({
           component: Bikes
         },
         {
+          path: ':id/edit',
+          name: 'BikeEdit',
+          component: BikeForm
+        },
+        {
           path: 'new',
           name: 'BikeForm',
           component: BikeForm,
@@ -75,8 +81,7 @@ export default new Router({
         {
           path: ':id',
           name: 'BikeItem',
-          component: BikeItem,
-          props: { default: true }
+          component: BikeItem
         }
       ]
     },

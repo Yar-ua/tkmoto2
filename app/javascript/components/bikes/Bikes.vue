@@ -26,7 +26,6 @@
           <md-card-expand>
             <md-card-actions md-alignment="space-between">
               <div>
-                <!--<md-button :to="{name: 'BikeItem', params: {id: item.id}}">More</md-button>-->
                 <md-button @click="bikeShow(item.id)">More</md-button>
                 <md-button>Action</md-button>
               </div>
@@ -40,7 +39,9 @@
 
             <md-card-expand-content>
               <md-card-content>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non, voluptas eius illo quas, saepe voluptate pariatur in deleniti minus sint. Excepturi.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. 
+                Dolores, sed accusantium quasi non, voluptas eius illo quas, 
+                saepe voluptate pariatur in deleniti minus sint. Excepturi.
               </md-card-content>
             </md-card-expand-content>
           </md-card-expand>

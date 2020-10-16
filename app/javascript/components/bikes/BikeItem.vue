@@ -3,14 +3,14 @@
     <md-card>
 
       <md-card-header>
-        <div class="md-title">Bike: {{ this.item.name }}</div>
+        <div class="md-title">Bike: {{ item.name }}</div>
         <div class="md-subhead">Subtitle here</div>
         
         
         <md-card-actions md-alignment="space-between">
           <div>
             <md-button>Settings</md-button>
-            <md-button :to="{name: 'BikeForm', params: {id: this.item.id}}">Edit bike</md-button>
+            <md-button @click="bikeEdit(item.id)">Edit bike</md-button>
           </div>
         </md-card-actions>
         
@@ -18,9 +18,10 @@
         <div>
           <md-content>
             <div>
-              <h6>year: {{ this.item.year }}</h6>
-              <h6>color: {{ this.item.color }}</h6>
-              <h6>engine volume, ccm: {{ this.item.volume }}</h6>
+              <h6>year: {{ item.year }}</h6>
+              <h6>color: {{ item.color }}</h6>
+              <h6>engine volume, ccm: {{ item.volume }}</h6>
+              <h6>id: {{ item.id }}</h6>
             </div>
           </md-content>
           <md-content class="md-primary">Primary</md-content>
@@ -69,6 +70,9 @@ export default {
     // }
   },
   methods: {
+    bikeEdit (id) {
+      this.$router.push({ name: 'BikeEdit', params: {id: id} })
+    }
     // getColor (value) {
     //   if (value >= 150) {
     //     return ''
@@ -81,7 +85,6 @@ export default {
   },
   created () {
     this.$store.dispatch('bike/show', {id: this.$route.params.id})
-    console.log(this.item)
     // this.$store.dispatch('fuel/fuellast', {id: this.$route.params.id})
     // this.$store.dispatch('bike/showConfig', {id: this.$route.params.id})
     // this.$store.dispatch('oil/oillast', {id: this.$route.params.id})

@@ -54,7 +54,6 @@ export default {
     create (context, params) {
       return axios.post(API.bikes, params)
         .then(response => {
-          console.log(response)
           context.commit('updateAddItem', response.data.data)
           context.commit('updateBikesList', response.data.data)
         })
