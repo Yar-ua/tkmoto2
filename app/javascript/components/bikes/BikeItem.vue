@@ -10,7 +10,8 @@
         <md-card-actions md-alignment="space-between">
           <div>
             <md-button>Settings</md-button>
-            <md-button @click="bikeEdit(item.id)">Edit bike</md-button>
+            <md-button class="md-primary" @click="bikeEdit(item.id)">Edit bike</md-button>
+            <md-button class="md-accent" @click="bikeDelete(item.id)">Delete bike</md-button>
           </div>
         </md-card-actions>
         
@@ -72,7 +73,37 @@ export default {
   methods: {
     bikeEdit (id) {
       this.$router.push({ name: 'BikeEdit', params: {id: id} })
-    }
+    },
+    bikeDelete (id) {
+      if (this.confirmDelete() === true) {
+        this.$store.dispatch('bike/delete', {id: this.$route.params.id})
+          .then(() => {
+            this.hasError = false
+            this.flashMessage.show({
+              status: 'success',
+              title: 'Success',
+              message: 'Bike was successfully deleted'
+            })
+            this.$router.push({name: 'Bikes'})
+          }).catch(err => {
+            if (err.response.status !== 200) {
+              this.hasError = true
+            }
+            this.sending = false
+          })
+      }
+    },
+    confirmDelete () {
+      if (confirm('Are You sure? Your bike and all information will be destroyed')) {
+        var bikeName = prompt('Enter Your bike name for destroy confirmation', 'sample bikename')
+        if (bikeName === this.item.name) {
+          return true
+        } else {
+          alert('Mistake in inputed bike name')
+          return false
+        }
+      }
+    },
     // getColor (value) {
     //   if (value >= 150) {
     //     return ''

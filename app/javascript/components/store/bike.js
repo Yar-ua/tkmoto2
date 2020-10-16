@@ -47,7 +47,6 @@ export default {
     show (context, params) {
       return axios.get(API.bike(params.id), '')
         .then(response => {
-          console.log(response)
           context.commit('updateAddItem', response.data)
         })
     },
@@ -58,15 +57,15 @@ export default {
           context.commit('updateBikesList', response.data.data)
         })
     },
-    // update (context, params) {
-    //   return axios.put(API.bike(params.id), params)
-    //     .then(response => {
-    //       context.commit('updateAddItem', response.data.data)
-    //     })
-    // },
-    // delete (context, params) {
-    //   return axios.delete(API.bike(params.id), '')
-    // },
+    update (context, params) {
+      return axios.put(API.bike(params.id), params)
+        .then(response => {
+          context.commit('updateAddItem', response.data.data)
+        })
+    },
+    delete (context, params) {
+      return axios.delete(API.bike(params.id), '')
+    },
 
     // showConfig (context, params) {
     //   context.commit('setLoading', true)

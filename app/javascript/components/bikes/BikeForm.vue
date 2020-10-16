@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form novalidate class="md-layout" @submit.prevent="validateBike">
+    <form novalidate class="md-layout" @submit.prevent="validateBike($route.params.id)">
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <md-card-header>
           <div class="md-title">Bike</div>
@@ -11,8 +11,8 @@
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
               <md-field :class="getValidationClass('name')">
-                <label for="name">Bike name</label>
-                <md-input name="name" id="name" autocomplete="name" v-model="item.name" :disabled="sending" />
+                <label>Bike name</label>
+                <md-input id="name" v-model="item.name" :disabled="sending" />
                 <span class="md-error" v-if="!$v.item.name.required">Name is required</span>
                 <span class="md-error" v-else-if="!$v.item.name.maxLength">...must be not more than 50 symbols</span>
               </md-field>
@@ -52,7 +52,6 @@
             <md-button v-else type="submit" class="md-primary" :disabled="sending">Save</md-button>
           </div>
         </md-card-actions>
-        <p>asdasd {{item}} || {{$route.params}}</p>
       </md-card>
 
     </form>
@@ -72,17 +71,16 @@
     mixins: [validationMixin],
     data: () => ({
       bikeSaved: false,
-      sending: false,
-      lastBike: null
+      sending: false
     }),
     computed: {
       ...mapState({
         user: 'user'
       }),
-    ...mapState('bike', {
-      item: 'addItem'
-    }),
-    isAuth () { return this.$store.getters.isAuth }
+      ...mapState('bike', {
+        item: 'addItem'
+      }),
+      isAuth () { return this.$store.getters.isAuth }
     },
     validations: {
       item: {
@@ -123,7 +121,7 @@
             this.flashMessage.show({
               status: 'success',
               title: 'Success',
-              message: 'You was successfully registred'
+              message: 'Bike was successfully registred'
             })
             this.$router.push({name: 'Bikes'})
           }).catch(err => {
@@ -133,11 +131,34 @@
             this.sending = false
           })
       },
-      validateBike () {
+      updateBike () {
+        this.sending = true
+        var params = {name: this.item.name, color: this.item.color, year: this.item.year, volume: this.item.volume}        
+        this.$store.dispatch('bike/update', {id: this.$route.params.id, bike: params})
+          .then(() => {
+            this.hasError = false
+            this.flashMessage.show({
+              status: 'success',
+              title: 'Success',
+              message: 'Bike was successfully updated'
+            })
+            this.$router.push({name: 'Bikes'})
+          }).catch(err => {
+            if (err.response.status !== 200) {
+              this.hasError = true
+            }
+            this.sending = false
+          })
+      },
+      validateBike (id) {
         this.$v.$touch()
 
         if (!this.$v.$invalid) {
-          this.saveBike()
+          if (id === 'new') {
+            this.saveBike()
+          } else {
+            this.updateBike()
+          }
         }
       }
     }
