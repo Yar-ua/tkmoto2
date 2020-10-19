@@ -42,6 +42,7 @@
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
 
         <md-card-actions>
+          <md-button :disabled="sending" :to="{name: 'Bikes'}">Back</md-button>
           <md-button type="submit" class="md-primary" :disabled="sending">Create user</md-button>
         </md-card-actions>
       </md-card>
@@ -61,7 +62,7 @@
   } from 'vuelidate/lib/validators'
 
   export default {
-    name: 'FormValidation',
+    name: 'SignUp',
     mixins: [validationMixin],
     data: () => ({
       form: {
@@ -105,8 +106,8 @@
       },
       saveUser () {
         this.sending = true
-        this.$store.dispatch('sign_up', 
-          {name: this.form.name, email: this.form.email, password: this.form.password, password_confirmation: this.form.passwordConfirmation})
+        var params = {name: this.form.name, email: this.form.email, password: this.form.password, password_confirmation: this.form.passwordConfirmation}
+        this.$store.dispatch('sign_up', params)
           .then(() => {
             this.hasError = false
             this.flashMessage.show({
@@ -114,7 +115,7 @@
               title: 'Success',
               message: 'You was successfully registred'
             })
-            this.$router.push({name: 'Home'})
+            this.$router.push({name: 'Bikes'})
           }).catch(err => {
             if (err.response.status !== 200) {
               this.hasError = true

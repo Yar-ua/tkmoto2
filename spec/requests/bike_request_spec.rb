@@ -27,12 +27,12 @@
       end
 
       it 'get index page' do
-        get :index
+        get :index, :format => :json
         expect(response.status).to eq(200)
       end
       
       it 'create bike' do
-        post :create, params: {bike: @bike}
+        post :create, params: {bike: @bike}, format: :json
         expect(response.status).to eq(200)
         expect(@user.bikes.count).to be > 0
       end
@@ -47,34 +47,40 @@
       end
 
       it 'show bike' do
-        get :show, params: {id: @bike.id}
+        get :show, params: {id: @bike.id}, format: :json
         expect(response.status).to eq(200)
         expect(response.body).to include(@bike.to_json)
+      end
+      
+      it 'show unexisted bike - json: error 404' do
+        get :show, params: {id: 99999}, format: :json
+        expect(response.status).to eq(404)
+        expect(response.body).to include("bike not found")
       end
 
       it 'update bike forbidden if user is not bike owner' do
         request.headers.merge! @another_user.create_new_auth_token
         @new_name = 'Yamaha KLX'
-        put :update, params: { id: @bike.id, bike: {name: @new_name} }
+        put :update, params: { id: @bike.id, bike: {name: @new_name} }, format: :json
         expect(response.status).to eq(422)
       end
 
       it 'update bike' do
         @new_name = 'Yamaha KLX'
-        put :update, params: { id: @bike.id, bike: {name: @new_name} }
+        put :update, params: { id: @bike.id, bike: {name: @new_name} }, format: :json
         expect(response.status).to eq(200)
         expect(Bike.find(@bike.id)[:name]).to eq(@new_name)
       end
 
       it 'destroy bike forbidden if user is not bike owner' do
         request.headers.merge! @another_user.create_new_auth_token
-        delete :destroy, params: {id: @bike.id}
+        delete :destroy, params: {id: @bike.id}, format: :json
         expect(response.status).to eq(422)
         expect(Bike.exists?(@bike.id)).to be true
       end
 
       it 'destroy bike' do
-        delete :destroy, params: {id: @bike.id}
+        delete :destroy, params: {id: @bike.id}, format: :json
         expect(response.status).to eq(200)
         expect(Bike.exists?(@bike.id)).to be false
       end

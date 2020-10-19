@@ -62,7 +62,7 @@ development:
     ### Use this settings to start app in dev mode on Amazon Cloud9
     host: localhost
     port: 8082
-    public: https://c7c0e963d21a452eaa23596002aaa9b9.vfs.cloud9.eu-central-1.amazonaws.com:8082
+    public: https://4149ea96f0c14cba9a6c2a7dda4dc386.vfs.cloud9.eu-central-1.amazonaws.com:8082
     ###
     ### Use this settings if you want to use app on your local computer or in Docker
     # host: localhost

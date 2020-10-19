@@ -13,7 +13,7 @@ Vue.use(Vuex)
 
 const Store = new Vuex.Store({
   state: {
-    isAuth: !!localStorage.isAuth,
+    isAuth: localStorage.isAuth == 'true' ? true : false,
     data: '',
     tokens: {
       accessToken: localStorage.accessToken ? localStorage.accessToken : '',
@@ -34,13 +34,13 @@ const Store = new Vuex.Store({
   },
 
   modules: {
-    errors
+    errors,
     // home,
-    // bike,
+    bike,
     // fuel,
     // repair,
     // oil,
-    // errors,
+    errors
     // alerts
   },
 
@@ -139,7 +139,7 @@ axios.interceptors.response.use(function (response) {
     Store.commit('errors/setErrors', 'Internal server error')
   } else {
     Store.commit('errors/setErrors', error.response.data.errors)
-    // return Promise.reject(error)
+    return Promise.reject(error)
   }
 })
 
@@ -151,6 +151,7 @@ function setTokensInHeaders (config) {
   config.headers.common['uid'] = localStorage.uid
   config.headers.common['Content-Type'] = 'application/json'
   config.headers.common['Access-Control-Allow-Origin'] = '*'
+  config.headers.common['Content-Type'] = 'application/json'
   return config
 }
 
