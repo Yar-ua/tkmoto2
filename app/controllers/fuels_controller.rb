@@ -1,7 +1,7 @@
 class FuelsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_bike
-  before_action :set_fuel, only: [:show, :edit, :update, :destroy ]
+  before_action :set_fuel, only: [:show, :update, :destroy ]
 
   def index
     @fuels = @bike.fuels.order(created_at: :desc)
@@ -37,9 +37,6 @@ class FuelsController < ApplicationController
     else
       respond_error_not_owner
     end
-  end
-
-  def edit
   end
 
   def update

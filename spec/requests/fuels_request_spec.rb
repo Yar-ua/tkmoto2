@@ -33,12 +33,25 @@ RSpec.describe FuelsController, type: :controller do
     end
 
 
-    describe "testing :create fuel" do
+    describe "testing :show and :create fuel" do
       before do
         @another_user = FactoryBot.create(:user)
         @another_bike = FactoryBot.create(:bike, user: @another_user)
         @fuel = FactoryBot.attributes_for(:fuel, bike: @bike)
         request.headers.merge! @user.create_new_auth_token
+      end
+      
+      it ':show have code 404 if not exists' do
+        get :show, params: {bike_id: @another_bike.id, id: 99999}, format: :json
+        expect(response.status).to eq(404)
+        expect( JSON.parse(response.body)["errors"] ).to eq('Fuel not found')
+      end
+      
+      it ':show available for all users if exists' do
+        @fuel = FactoryBot.create(:fuel, bike: @bike)
+        get :show, params: {bike_id: @another_bike.id, id: @fuel.id}, format: :json
+        expect(response.status).to eq(200)
+        expect(response.content_type).to include("application/json")   
       end
 
       it "forbidden if current user is not bike owner" do
@@ -129,14 +142,7 @@ RSpec.describe FuelsController, type: :controller do
       end
     end
 
-
-
-
-
-
   end
-
-
 end
  
  

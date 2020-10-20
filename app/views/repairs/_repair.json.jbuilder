@@ -1,0 +1,1 @@
+json.extract! repair, :id, :description, :note, :price, :date, :bike_id, :created_at, :updated_at
