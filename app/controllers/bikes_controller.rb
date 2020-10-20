@@ -44,7 +44,7 @@ class BikesController < ApplicationController
     else
       respond_to do |format|
         format.html
-        format.json { render @bike.errors, status: 422 }
+        format.json { render json: @bike.errors, status: 422 }
       end
     end
   end

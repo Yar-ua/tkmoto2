@@ -1,4 +1,5 @@
 class OilsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_bike
   before_action :set_oil, only: [ :edit, :update, :destroy ]
 
