@@ -13,7 +13,6 @@ import Bikes from '../bikes/Bikes'
 import BikesSheet from '../bikes/BikesSheet'
 import BikeForm from '../bikes/BikeForm'
 import BikeItem from '../bikes/BikeItem'
-import Test from '../bikes/Test'
 
 import store from '../store'
 

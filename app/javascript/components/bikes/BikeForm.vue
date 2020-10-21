@@ -45,7 +45,7 @@
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
 
         <md-card-actions>
-          <md-button :disabled="sending" :to="{name: 'Bikes'}">Back</md-button>
+          <app-back-button v-bind:is-sending="sending"></app-back-button>
           <div v-if="isAuth">
             
             <md-button v-if="($route.params.id) != 'new'" type="submit" class="md-primary" :disabled="sending">Update</md-button>
@@ -59,6 +59,7 @@
 </template>
 
 <script>
+  import BackButton from '../Back_Button'
   import { mapState } from 'vuex'
   import { validationMixin } from 'vuelidate'
   import {
@@ -67,6 +68,9 @@
   } from 'vuelidate/lib/validators'
 
   export default {
+    components: {
+      'app-back-button': BackButton
+    },    
     name: 'BikeForm',
     mixins: [validationMixin],
     data: () => ({

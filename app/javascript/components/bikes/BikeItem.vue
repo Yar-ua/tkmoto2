@@ -4,9 +4,8 @@
 
       <md-card-header>
         <div class="md-title">Bike: {{ item.name }}</div>
-        <div class="md-subhead">Subtitle here</div>
-        
-        
+        <!--<div class="md-subhead">Subtitle here</div>-->
+
         <md-card-actions md-alignment="space-between">
           <div>
             <md-button>Settings</md-button>
@@ -14,7 +13,6 @@
             <md-button class="md-accent" @click="bikeDelete(item.id)">Delete bike</md-button>
           </div>
         </md-card-actions>
-        
 
         <div>
           <md-content>
