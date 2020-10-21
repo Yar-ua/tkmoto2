@@ -3,6 +3,8 @@ class Bike < ApplicationRecord
   has_many :repairs, dependent: :destroy
   has_many :oils, dependent: :destroy
   has_one  :bike_config, dependent: :destroy
+  
+  belongs_to :user
 
   validates	:name,   presence: true, 
                      length: { maximum: 50 }

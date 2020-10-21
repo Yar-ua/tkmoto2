@@ -12,9 +12,9 @@ RSpec.describe BikeConfigsController, type: :routing do
       expect(get: "bikes/1/bike_configs").to route_to("bike_configs#show", bike_id: "1")
     end
 
-    it "routes to #edit" do
-      expect(get: "bikes/1/bike_configs/edit").to route_to("bike_configs#edit", bike_id: "1")
-    end
+    # it "routes to #edit" do
+    #   expect(get: "bikes/1/bike_configs/edit").to route_to("bike_configs#edit", bike_id: "1")
+    # end
 
 
     it "routes to #create" do

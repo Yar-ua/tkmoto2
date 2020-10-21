@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe BikeConfig, type: :model do
-#   let(:user) {FactoryBot.create(:user)}
-#   let(:bike) {FactoryBot.create(:bike, :user => user)}
-  let(:bike) {FactoryBot.create(:bike)}
+  let(:user) {FactoryBot.create(:user)}
+  let(:bike) {FactoryBot.create(:bike, :user => user)}
   let(:bike_config) {FactoryBot.create(:bike_config, :bike => bike)}
 
   it 'bike after Factory valid with valid attributes' do
     expect(bike).to be_valid
+    expect(bike.user).to be_valid
   end
 
   it 'bike_config after Factory valid with valid attributes' do

@@ -14,9 +14,9 @@ RSpec.describe RepairsController, type: :routing do
       expect(get: "bikes/1/repairs/5").to route_to("repairs#show", bike_id: "1", id: "5")
     end
 
-    it "routes to #edit" do
-      expect(get: "bikes/1/repairs/5/edit").to route_to("repairs#edit", bike_id: "1", id: "5")
-    end
+    # it "routes to #edit" do
+    #   expect(get: "bikes/1/repairs/5/edit").to route_to("repairs#edit", bike_id: "1", id: "5")
+    # end
 
 
     it "routes to #create" do

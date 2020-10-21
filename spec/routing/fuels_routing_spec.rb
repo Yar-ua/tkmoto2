@@ -10,13 +10,13 @@ RSpec.describe FuelsController, type: :routing do
       expect(get: "bikes/1/fuels/new").to route_to("fuels#new", bike_id: "1")
     end
 
-    # it "routes to #show" do
-    #   expect(get: "bikes/1/fuels/10").to route_to("fuels#show", bike_id: "1", id: "10")
-    # end
-
-    it "routes to #edit" do
-      expect(get: "bikes/1/fuels/5/edit").to route_to("fuels#edit", bike_id: "1", id: "5")
+    it "routes to #show" do
+      expect(get: "bikes/1/fuels/10").to route_to("fuels#show", bike_id: "1", id: "10")
     end
+
+    # it "routes to #edit" do
+    #   expect(get: "bikes/1/fuels/5/edit").to route_to("fuels#edit", bike_id: "1", id: "5")
+    # end
 
 
     it "routes to #create" do
