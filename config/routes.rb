@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :bikes do
   	resources :fuels, except: :edit
     resources :repairs, except: :edit
-    resources :oils, except: :show
+    resources :oils, except: :edit
     resource :bike_configs, except: [:edit, :destroy]
   end
 

@@ -1,1 +1,1 @@
-json.partial! "oils/oil", oil: @oil
+json.array! @oils, partial: "oils/oil", as: :oil
