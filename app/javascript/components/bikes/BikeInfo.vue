@@ -1,0 +1,1 @@
+<template><p>this is bike info page</p></template>
