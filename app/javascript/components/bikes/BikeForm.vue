@@ -12,7 +12,7 @@
             <div class="md-layout-item md-small-size-100">
               <md-field :class="getValidationClass('name')">
                 <label>Bike name</label>
-                <md-input id="name" v-model="item.name" :disabled="sending" />
+                <md-input name="name" v-model="item.name" :disabled="sending" />
                 <span class="md-error" v-if="!$v.item.name.required">Name is required</span>
                 <span class="md-error" v-else-if="!$v.item.name.maxLength">...must be not more than 50 symbols</span>
               </md-field>

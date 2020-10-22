@@ -86,6 +86,7 @@ export default new Router({
           path: ':id',
           name: 'BikeItem',
           component: BikeItem,
+          redirect: { name: 'BikeInfo' },
           children: [
             {
               path: 'info',

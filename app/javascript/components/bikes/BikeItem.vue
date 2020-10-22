@@ -6,20 +6,6 @@
         <div class="md-title">Bike: {{ item.name }}</div>
         <app-bike-nav></app-bike-nav>
         <router-view/>
-
-        <div>
-          <md-content>
-            <div>
-              <h6>year: {{ item.year }}</h6>
-              <h6>color: {{ item.color }}</h6>
-              <h6>engine volume, ccm: {{ item.volume }}</h6>
-              <h6>id: {{ item.id }}</h6>
-            </div>
-          </md-content>
-          <md-content class="md-primary">Primary</md-content>
-          <md-content class="md-accent">Accent</md-content>
-        </div>
-        
       </md-card-header>
       
     </md-card>
@@ -43,43 +29,12 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      user: 'user'
-    }),
     ...mapState('bike', {
-      item: 'addItem',
-      config: 'config'
-    }),
-    // ...mapState('fuel', {
-    //   odometer: 'odometer'
-    // }),
-    // ...mapState('oil', {
-    //   oilLastChange: 'oilLastChange'
-    // }),
-    isAuth () { return this.$store.getters.isAuth },
-    // value: function () {
-    //   let delta = this.config.oil_change - (this.odometer - this.oilLastChange)
-    //   let color = this.getColor(delta)
-    //   let text = `<span style="color: ${color}">${delta}</span>`
-    //   return text
-    // }
-  },
-  methods: {
-    // getColor (value) {
-    //   if (value >= 150) {
-    //     return ''
-    //   } else if ((value <= 100) && (value >= 0)) {
-    //     return 'yellow'
-    //   } else {
-    //     return 'red'
-    //   }
-    // }
+      item: 'addItem'
+    })
   },
   created () {
     this.$store.dispatch('bike/show', {id: this.$route.params.id})
-    // this.$store.dispatch('fuel/fuellast', {id: this.$route.params.id})
-    // this.$store.dispatch('bike/showConfig', {id: this.$route.params.id})
-    // this.$store.dispatch('oil/oillast', {id: this.$route.params.id})
   }
 }
 </script>
