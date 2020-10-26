@@ -17,6 +17,8 @@ import BikeConfigs from '../bikes/BikeConfigs'
 import BikeInfo from '../bikes/BikeInfo'
 
 import FuelSheet from '../fuels/FuelSheet'
+import FuelTable from '../fuels/FuelTable'
+import FuelForm from '../fuels/FuelForm'
 
 import OilSheet from '../oils/OilSheet'
 
@@ -93,11 +95,24 @@ export default new Router({
               name: 'BikeInfo',
               component: BikeInfo
             },
+            // fuels CRUD
             {
               path: 'fuels',
-              name: 'FuelSheet',
-              component: FuelSheet
+              component: FuelSheet,
+              children: [
+                {
+                  path: '',
+                  name: 'FuelTable',
+                  component: FuelTable
+                },
+                {
+                  path: 'new',
+                  name: 'FuelForm',
+                  component: FuelForm
+                }
+              ]
             },
+            // oils CRUD
             {
               path: 'oils',
               name: 'OilSheet',
