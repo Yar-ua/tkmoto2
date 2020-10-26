@@ -1,125 +1,152 @@
 <template>
   <div>
-    <form novalidate class="md-layout" @submit.prevent="validateUser">
+    <form novalidate class="md-layout" @submit.prevent="validateFuel($route.params.fuel_id)">
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <md-card-header>
-          <div class="md-title">Users</div>
+          <div class="md-title">New fuel data</div>
         </md-card-header>
 
         <md-card-content>
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
-              <md-field :class="getValidationClass('firstName')">
-                <label for="first-name">First Name</label>
-                <md-input name="first-name" id="first-name" autocomplete="given-name" v-model="form.firstName" :disabled="sending" />
-                <span class="md-error" v-if="!$v.form.firstName.required">The first name is required</span>
-                <span class="md-error" v-else-if="!$v.form.firstName.minlength">Invalid first name</span>
+              <md-field :class="getValidationClass('odo')">
+                <label for="odo">Odometer value, km</label>
+                <md-input type="number" name="odo" v-model="fitem.odo" :disabled="sending" />
+                <span class="md-error" v-if="!$v.fitem.odo.required">Odometer value is required</span>
+                <span class="md-error" v-else-if="!$v.fitem.odo.maxlength">Invalid odometer data length (50 max)</span>
               </md-field>
             </div>
 
             <div class="md-layout-item md-small-size-100">
-              <md-field :class="getValidationClass('lastName')">
-                <label for="last-name">Last Name</label>
-                <md-input name="last-name" id="last-name" autocomplete="family-name" v-model="form.lastName" :disabled="sending" />
-                <span class="md-error" v-if="!$v.form.lastName.required">The last name is required</span>
-                <span class="md-error" v-else-if="!$v.form.lastName.minlength">Invalid last name</span>
+              <md-field :class="getValidationClass('odo_delta')">
+                <label for="odo_delta">Odometer delta (kilometrage), km</label>
+                <md-input type="number" name="odo_delta" v-model="fitem.odo_delta" :disabled="sending" />
+                <span class="md-error" v-if="!$v.fitem.odo_delta.required">Kilometrage is required</span>
+                <span class="md-error" v-else-if="!$v.fitem.odo_delta.maxlength">Invalid odometer data length (50 max)</span>
               </md-field>
             </div>
           </div>
 
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
-              <md-field :class="getValidationClass('gender')">
-                <label for="gender">Gender</label>
-                <md-select name="gender" id="gender" v-model="form.gender" md-dense :disabled="sending">
-                  <md-option></md-option>
-                  <md-option value="M">M</md-option>
-                  <md-option value="F">F</md-option>
-                </md-select>
-                <span class="md-error">The gender is required</span>
+              <md-field :class="getValidationClass('refueling')">
+                <label for="refueling">Refueling, liters</label>
+                <md-input type="number" name="refueling" v-model="fitem.refueling" md-dense :disabled="sending" />
+                <span class="md-error" v-if="!$v.fitem.refueling.required">refueling in liters </span>
+                <span class="md-error" v-else-if="!$v.fitem.refueling.maxlength">Invalid refueling data length (50 max)</span>
               </md-field>
             </div>
 
             <div class="md-layout-item md-small-size-100">
-              <md-field :class="getValidationClass('age')">
-                <label for="age">Age</label>
-                <md-input type="number" id="age" name="age" autocomplete="age" v-model="form.age" :disabled="sending" />
-                <span class="md-error" v-if="!$v.form.age.required">The age is required</span>
-                <span class="md-error" v-else-if="!$v.form.age.maxlength">Invalid age</span>
+              <md-field :class="getValidationClass('price_fuel')">
+                <label for="age">Fuel price</label>
+                <md-input type="number" name="price_fuel" autocomplete="price_fuel" v-model="fitem.price_fuel" :disabled="sending" />
+                <span class="md-error" v-if="!$v.fitem.price_fuel.required">Fuel price required</span>
+                <span class="md-error" v-else-if="!$v.fitem.price_fuel.maxlength">Invalid price data length (50 max)</span>
               </md-field>
             </div>
           </div>
 
-          <md-field :class="getValidationClass('email')">
-            <label for="email">Email</label>
-            <md-input type="email" name="email" id="email" autocomplete="email" v-model="form.email" :disabled="sending" />
-            <span class="md-error" v-if="!$v.form.email.required">The email is required</span>
-            <span class="md-error" v-else-if="!$v.form.email.email">Invalid email</span>
-          </md-field>
+          <div class="md-layout md-gutter">
+            <div class="md-layout-item md-small-size-100">
+              <md-field>
+                <label for="fuel_station">Fuel station</label>
+                <md-input name="fuel_station" v-model="fitem.fuel_station" md-dense :disabled="sending" />
+              </md-field>
+            </div>
+
+            <div class="md-layout-item md-small-size-100">
+              <md-field>
+                <label for="age">Fuel type</label>
+                <md-input name="fuel_type" autocomplete="fuel_type" v-model="fitem.fuel_type" :disabled="sending" />
+              </md-field>
+            </div>
+          </div>
+          
+          <div class="block">
+            <md-field :class="getValidationClass('date')">
+              <label for="date">Refueling date</label>
+              <md-datepicker v-model="fitem.date" />
+              <span class="md-error" v-if="!$v.fitem.date.required">Date required</span>
+            </md-field>
+          </div>
+
         </md-card-content>
 
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
 
         <md-card-actions>
-          <md-button type="submit" class="md-primary" :disabled="sending">Create user</md-button>
+          <app-back-button v-bind:is-sending="sending"></app-back-button>
+          <div v-if="isAuth">
+            <md-button type="submit" class="md-primary" :disabled="sending">Save fuel</md-button>
+          </div>
         </md-card-actions>
       </md-card>
 
-      <md-snackbar :md-active.sync="userSaved">The user {{ lastUser }} was saved with success!</md-snackbar>
     </form>
   </div>
 </template>
 
 <script>
+  import BackButton from '../Back_Button'
+  import { mapState } from 'vuex'
   import { validationMixin } from 'vuelidate'
   import {
     required,
-    email,
-    minLength,
     maxLength
   } from 'vuelidate/lib/validators'
 
   export default {
-    name: 'FormValidation',
+    components: {
+      'app-back-button': BackButton
+    },    
+    name: 'FuelForm',
     mixins: [validationMixin],
     data: () => ({
-      form: {
-        firstName: null,
-        lastName: null,
-        gender: null,
-        age: null,
-        email: null,
+      fitem: {
+        odo: null,
+        odo_delta: null,
+        refueling: null,
+        price_fuel: null,
+        fuel_station: null,
+        fuel_type: null,
+        date: null
       },
-      userSaved: false,
-      sending: false,
-      lastUser: null
+      fuelSaved: false,
+      sending: false
     }),
+    computed: {
+      ...mapState('fuel', {
+        fitem: 'addItem'
+      }),
+      isAuth () { return this.$store.getters.isAuth }
+    },    
     validations: {
-      form: {
-        firstName: {
+      fitem: {
+        odo: {
           required,
-          minLength: minLength(3)
+          maxLength: maxLength(50)
         },
-        lastName: {
+        odo_delta: {
           required,
-          minLength: minLength(3)
+          maxLength: maxLength(50)
         },
-        age: {
+        refueling: {
           required,
-          maxLength: maxLength(3)
+          maxLength: maxLength(50)
         },
-        gender: {
+        price_fuel: {
+          required,
+          maxLength: maxLength(50)
+        },
+        date: {
           required
-        },
-        email: {
-          required,
-          email
         }
       }
     },
     methods: {
       getValidationClass (fieldName) {
-        const field = this.$v.form[fieldName]
+        const field = this.$v.fitem[fieldName]
 
         if (field) {
           return {
@@ -127,30 +154,70 @@
           }
         }
       },
-      clearForm () {
-        this.$v.$reset()
-        this.form.firstName = null
-        this.form.lastName = null
-        this.form.age = null
-        this.form.gender = null
-        this.form.email = null
-      },
-      saveUser () {
-        this.sending = true
 
-        // Instead of this timeout, here you can call your API
-        window.setTimeout(() => {
-          this.lastUser = `${this.form.firstName} ${this.form.lastName}`
-          this.userSaved = true
-          this.sending = false
-          this.clearForm()
-        }, 1500)
+      saveFuel () {
+        this.sending = true
+        var params = {odo: this.fitem.odo, 
+                      odo_delta: this.fitem.odo_delta, 
+                      refueling: this.fitem.refueling, 
+                      price_fuel: this.fitem.price_fuel, 
+                      fuel_station: this.fitem.fuel_station,
+                      fuel_type: this.fitem.fuel_type,
+                      date: this.fitem.date
+        }
+        this.$store.dispatch('fuel/create', {bikeId: this.$route.params.id, fuel: params})
+          .then(() => {
+            this.hasError = false
+            this.flashMessage.show({
+              status: 'success',
+              title: 'Success',
+              message: 'Fuel was successfully created'
+            })
+            this.$router.push({name: 'FuelTable'})
+          }).catch(err => {
+            if (err.response.status !== 200) {
+              this.hasError = true
+            }
+            this.sending = false
+          })        
       },
-      validateUser () {
+
+      updateFuel () {
+        this.sending = true
+        var params = {odo: this.fitem.odo, 
+                      odo_delta: this.fitem.odo_delta, 
+                      refueling: this.fitem.refueling, 
+                      price_fuel: this.fitem.price_fuel, 
+                      fuel_station: this.fitem.fuel_station,
+                      fuel_type: this.fitem.fuel_type,
+                      date: this.fitem.date
+        }
+        this.$store.dispatch('fuel/update', {bikeId: this.$route.params.id, id: this.$route.params.fuel_id, fuel: params})
+          .then(() => {
+            this.hasError = false
+            this.flashMessage.show({
+              status: 'success',
+              title: 'Success',
+              message: 'Fuel was successfully updated'
+            })
+            this.$router.push({name: 'FuelTable'})
+          }).catch(err => {
+            if (err.response.status !== 200) {
+              this.hasError = true
+            }
+            this.sending = false
+          })        
+      },
+
+      validateFuel (fuel_id) {
         this.$v.$touch()
 
         if (!this.$v.$invalid) {
-          this.saveUser()
+          if (fuel_id === 'new') {
+            this.saveFuel()
+          } else {
+            this.updateFuel()
+          }
         }
       }
     }

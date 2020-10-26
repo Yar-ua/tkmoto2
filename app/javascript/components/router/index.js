@@ -106,8 +106,13 @@ export default new Router({
                   component: FuelTable
                 },
                 {
-                  path: 'new',
+                  path: ':fuel_id',
                   name: 'FuelForm',
+                  component: FuelForm
+                },
+                {
+                  path: ':fuel_id/edit',
+                  name: 'FuelEdit',
                   component: FuelForm
                 }
               ]

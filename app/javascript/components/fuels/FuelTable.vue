@@ -3,7 +3,7 @@
     <md-table v-model="fuelsList" md-card @md-selected="onSelect">
       <md-table-toolbar>
         <h1 class="md-title">Fuels list
-          <md-button class="md-icon-button md-raised md-primary" :to="{name: 'FuelForm'}">
+          <md-button class="md-icon-button md-raised md-primary" :to="{name: 'FuelForm', params: {fuel_id: 'new'}}">
             <i class="fas fa-plus-square"></i>
           </md-button>
         </h1>
@@ -21,7 +21,7 @@
         <md-table-cell md-label="km per 1 l">---</md-table-cell>
         <md-table-cell md-label="price per 1 km">---</md-table-cell>
         <md-table-cell md-label="control">
-          <md-button class="md-icon-button md-raised md-primary">
+          <md-button class="md-icon-button md-raised md-primary" @click="fuelEdit(item.id)">
             <i class="far fa-edit"></i>
           </md-button>
           <md-button class="md-icon-button md-raised md-accent">
@@ -38,7 +38,7 @@
 
 import { mapState } from 'vuex'
 export default {
-  name: 'FuelSheet',
+  name: 'FuelTable',
   data: () => {
     return {
       dialog: false,
@@ -52,13 +52,16 @@ export default {
     })
   },
   methods: {
-      getClass: ({ id }) => ({
-        'md-primary': id === 2,
-        'md-accent': id === 3
-      }),
-      onSelect (item) {
-        this.selected = item
-      }      
+    getClass: ({ id }) => ({
+      'md-primary': id === 2,
+      'md-accent': id === 3
+    }),
+    onSelect (item) {
+      this.selected = item
+    },
+    fuelEdit (id) {
+      this.$router.push({ name: 'FuelEdit', params: {fuel_id: id} })
+    }
   },
   created () {
     this.$store.dispatch('fuel/index', {bikeId: this.$route.params.id})
