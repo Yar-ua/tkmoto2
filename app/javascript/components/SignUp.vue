@@ -42,17 +42,17 @@
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
 
         <md-card-actions>
-          <md-button :disabled="sending" :to="{name: 'Bikes'}">Back</md-button>
+          <app-back-button v-bind:is-sending="sending"></app-back-button>
           <md-button type="submit" class="md-primary" :disabled="sending">Create user</md-button>
         </md-card-actions>
       </md-card>
 
-      <md-snackbar :md-active.sync="userSaved">The user {{ lastUser }} was saved with success!</md-snackbar>
     </form>
   </div>
 </template>
 
 <script>
+  import BackButton from '../components/Back_Button'
   import { validationMixin } from 'vuelidate'
   import {
     required,
@@ -62,6 +62,9 @@
   } from 'vuelidate/lib/validators'
 
   export default {
+    components: {
+      'app-back-button': BackButton
+    },
     name: 'SignUp',
     mixins: [validationMixin],
     data: () => ({
@@ -72,8 +75,7 @@
         passwordConfirmation: null
       },
       userSaved: false,
-      sending: false,
-      lastUser: null
+      sending: false
     }),
     validations: {
       form: {

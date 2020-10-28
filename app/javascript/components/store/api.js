@@ -21,11 +21,12 @@ export default {
   bike: (bikeId) => ('/bikes/#{id}.json').replace('#{id}', bikeId),
 
   // GET, POST /bikes/:bike_id/fuels (index, create fuels)
-//   fuels: (bikeId) => (process.env.apiUrl + '/bikes/#{bike_id}' + '/fuels').replace('#{bike_id}', bikeId),
-  // PUT, DELETE /bikes/:bike_id/fuels/:id (update, destroy fuel)
-//   fuel: (bikeId, id) => (process.env.apiUrl + '/bikes/#{bike_id}' + '/fuels/#{id}')
-    // .replace('#{bike_id}', bikeId).replace('#{id}', id),
+  fuels: (bikeId) => ('/bikes/#{bike_id}' + '/fuels.json').replace('#{bike_id}', bikeId),
+  // GET, PUT, DELETE /bikes/:bike_id/fuels/:id (show, update, destroy fuel)
+  fuel: (bikeId, id) => ('/bikes/#{bike_id}' + '/fuels/#{id}.json').replace('#{bike_id}', bikeId).replace('#{id}', id),
 
+  // GET, POST /bikes/:bike_id/fuels (index, create fuels)
+  oils: (bikeId) => ('/bikes/#{bike_id}' + '/oils.json').replace('#{bike_id}', bikeId),
   // GET /bike/:bike_id/fuellast (show fuel item with the biggest odometer)
 //   bikeFuel: (bikeId) => (process.env.apiUrl + '/bikes/#{id}/fuellast').replace('#{id}', bikeId),
 

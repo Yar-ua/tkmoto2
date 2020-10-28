@@ -6,6 +6,6 @@
 
 <script>
   export default {
-    name: 'BikesSheet'
+    name: 'FuelSheet'
   }
 </script>

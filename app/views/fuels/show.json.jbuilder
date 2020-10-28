@@ -1,1 +1,1 @@
-json.array! @fuels, partial: "fuels/fuel", as: :fuel
+json.partial! "fuels/fuel", fuel: @fuel
