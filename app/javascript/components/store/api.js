@@ -22,8 +22,8 @@ export default {
 
   // GET, POST /bikes/:bike_id/fuels (index, create fuels)
   fuels: (bikeId) => ('/bikes/#{bike_id}' + '/fuels.json').replace('#{bike_id}', bikeId),
-  // PUT, DELETE /bikes/:bike_id/fuels/:id (update, destroy fuel)
-  fuel: (bikeId, id) => ('/bikes/#{bike_id}' + '/fuels/#{id}').replace('#{bike_id}', bikeId).replace('#{id}', id),
+  // GET, PUT, DELETE /bikes/:bike_id/fuels/:id (show, update, destroy fuel)
+  fuel: (bikeId, id) => ('/bikes/#{bike_id}' + '/fuels/#{id}.json').replace('#{bike_id}', bikeId).replace('#{id}', id),
 
   // GET, POST /bikes/:bike_id/fuels (index, create fuels)
   oils: (bikeId) => ('/bikes/#{bike_id}' + '/oils.json').replace('#{bike_id}', bikeId),

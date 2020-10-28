@@ -103,15 +103,7 @@
     name: 'FuelForm',
     mixins: [validationMixin],
     data: () => ({
-      fitem: {
-        odo: null,
-        odo_delta: null,
-        refueling: null,
-        price_fuel: null,
-        fuel_station: null,
-        fuel_type: null,
-        date: null
-      },
+      // fitem: (this.item || null),
       fuelSaved: false,
       sending: false
     }),
@@ -201,12 +193,12 @@
               message: 'Fuel was successfully updated'
             })
             this.$router.push({name: 'FuelTable'})
-          }).catch(err => {
-            if (err.response.status !== 200) {
-              this.hasError = true
-            }
-            this.sending = false
-          })        
+          }) //.catch(err => {
+            // if (err.response.status !== 200) {
+              // this.hasError = true
+            // }
+            // this.sending = false
+          // })        
       },
 
       validateFuel (fuel_id) {
@@ -219,6 +211,11 @@
             this.updateFuel()
           }
         }
+      }
+    },
+    created () {
+      if (this.$route.params.fuel_id != 'new') {
+        this.$store.dispatch('fuel/show', {bikeId: this.$route.params.id, id: this.$route.params.fuel_id})
       }
     }
   }

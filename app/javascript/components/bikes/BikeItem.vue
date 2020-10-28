@@ -15,28 +15,28 @@
 
 
 <script>
-import BikeNav from './BikeNav'
-import { mapState } from 'vuex'
-export default {
-  name: 'BikeItem',
-  components: {
-    'app-bike-nav': BikeNav
-  },
-  data: () => {
-    return {
-      dialog: false,
-      valid: true
+  import BikeNav from './BikeNav'
+  import { mapState } from 'vuex'
+  export default {
+    name: 'BikeItem',
+    components: {
+      'app-bike-nav': BikeNav
+    },
+    data: () => {
+      return {
+        dialog: false,
+        valid: true
+      }
+    },
+    computed: {
+      ...mapState('bike', {
+        item: 'addItem'
+      })
+    },
+    created () {
+      this.$store.dispatch('bike/show', {id: this.$route.params.id})
     }
-  },
-  computed: {
-    ...mapState('bike', {
-      item: 'addItem'
-    })
-  },
-  created () {
-    this.$store.dispatch('bike/show', {id: this.$route.params.id})
   }
-}
 </script>
 
 

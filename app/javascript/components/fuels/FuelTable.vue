@@ -24,7 +24,7 @@
           <md-button class="md-icon-button md-raised md-primary" @click="fuelEdit(item.id)">
             <i class="far fa-edit"></i>
           </md-button>
-          <md-button class="md-icon-button md-raised md-accent">
+          <md-button class="md-icon-button md-raised md-accent" @click="fuelDelete(item.id)">
             <i class="far fa-calendar-times"></i>
           </md-button>
         </md-table-cell>
@@ -61,6 +61,36 @@ export default {
     },
     fuelEdit (id) {
       this.$router.push({ name: 'FuelEdit', params: {fuel_id: id} })
+    },
+    fuelDelete (id) {
+      if (this.confirmDelete() === true) {
+        this.$store.dispatch('fuel/delete', {bikeId: this.$route.params.id, id: id})
+          .then(() => {
+            this.hasError = false
+            this.flashMessage.show({
+              status: 'success',
+              title: 'Success',
+              message: 'Fuel was successfully deleted'
+            })
+            this.$router.push({name: 'FuelTable'})
+          }).catch(err => {
+            if (err.response.status !== 200) {
+              this.hasError = true
+            }
+            this.sending = false
+          })
+      }
+    },
+    confirmDelete () {
+      if (confirm('Are You sure to delete fuel data?')) {
+        // var conf = prompt('Type "Yes" to confirm delete')
+        if (prompt('Type "Yes" to confirm delete') == 'Yes') {
+          return true
+        } else {
+          alert('Not confirmed')
+          return false
+        }
+      }
     }
   },
   created () {
