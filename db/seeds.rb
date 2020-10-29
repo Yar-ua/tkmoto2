@@ -9,3 +9,19 @@ require 'faker'
     FactoryBot.create(:bike, user: user)
   end
 end
+
+### this seed option used for creating special user for manual application testing
+user = FactoryBot.create(:myuser)
+2.times do
+  bike = FactoryBot.create(:bike, user: user)
+  18.times do
+    FactoryBot.create(:fuel, bike: bike)
+  end
+  8.times do
+    FactoryBot.create(:oil, bike: bike)
+  end
+  15.times do
+    FactoryBot.create(:repair, bike: bike)
+  end  
+  FactoryBot.create(:bike_config, bike: bike)
+end

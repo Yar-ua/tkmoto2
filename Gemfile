@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
+ruby '2.7.2'
 
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 gem 'pg', '>= 0.18', '< 2.0'
@@ -59,4 +59,4 @@ gem 'will_paginate-bootstrap'
 # for starting frontend and backend together
 gem 'foreman'
 gem 'devise_token_auth'
-gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cors'

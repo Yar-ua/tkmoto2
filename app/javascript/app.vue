@@ -11,6 +11,7 @@
             </md-button>
             
             <span class="md-title">TKMoto</span>
+            <app-navlinks></app-navlinks>
           </div>
 
           <div class="md-toolbar-section-end">
@@ -20,9 +21,6 @@
           </div>
         </div>
 
-        <div class="md-toolbar-row">
-          <app-navlinks></app-navlinks>
-        </div>
       </md-app-toolbar>
 
       <md-app-drawer :md-active.sync="menuVisible">
