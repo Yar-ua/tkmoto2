@@ -6,9 +6,10 @@ import API from './api'
 
 import errors from './flash/errors'
 import bike from './bike'
+import fuel from './fuel'
+import oil from './oil'
 
 Vue.use(Vuex)
-
 
 
 const Store = new Vuex.Store({
@@ -37,11 +38,10 @@ const Store = new Vuex.Store({
     errors,
     // home,
     bike,
-    // fuel,
+    fuel,
     // repair,
-    // oil,
+    oil,
     errors
-    // alerts
   },
 
   mutations: {
@@ -154,6 +154,5 @@ function setTokensInHeaders (config) {
   config.headers.common['Content-Type'] = 'application/json'
   return config
 }
-
 
 export default Store

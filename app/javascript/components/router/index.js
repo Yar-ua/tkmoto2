@@ -13,14 +13,20 @@ import Bikes from '../bikes/Bikes'
 import BikesSheet from '../bikes/BikesSheet'
 import BikeForm from '../bikes/BikeForm'
 import BikeItem from '../bikes/BikeItem'
-import Test from '../bikes/Test'
+import BikeConfigs from '../bikes/BikeConfigs'
+import BikeInfo from '../bikes/BikeInfo'
+
+import FuelSheet from '../fuels/FuelSheet'
+import FuelTable from '../fuels/FuelTable'
+import FuelForm from '../fuels/FuelForm'
+
+import OilSheet from '../oils/OilSheet'
 
 import store from '../store'
 
 Vue.use(Router)
 
 export default new Router({
-  // mode: 'history',
   routes: [
     // {
     //   path: '/home',
@@ -81,7 +87,48 @@ export default new Router({
         {
           path: ':id',
           name: 'BikeItem',
-          component: BikeItem
+          component: BikeItem,
+          redirect: { name: 'BikeInfo' },
+          children: [
+            {
+              path: 'info',
+              name: 'BikeInfo',
+              component: BikeInfo
+            },
+            // fuels CRUD
+            {
+              path: 'fuels',
+              component: FuelSheet,
+              children: [
+                {
+                  path: '',
+                  name: 'FuelTable',
+                  component: FuelTable
+                },
+                {
+                  path: ':fuel_id',
+                  name: 'FuelForm',
+                  component: FuelForm
+                },
+                {
+                  path: ':fuel_id/edit',
+                  name: 'FuelEdit',
+                  component: FuelForm
+                }
+              ]
+            },
+            // oils CRUD
+            {
+              path: 'oils',
+              name: 'OilSheet',
+              component: OilSheet
+            },
+            {
+              path: 'settings',
+              name: 'BikeConfigs',
+              component: BikeConfigs
+            }
+          ]
         }
       ]
     },
