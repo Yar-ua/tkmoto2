@@ -1,6 +1,7 @@
 class RepairsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_bike
-  before_action :set_repair, only: [ :edit, :update, :destroy ]
+  before_action :set_repair, only: [ :show, :update, :destroy ]
 
   def index
     @repairs = @bike.repairs.order(date: :desc)
@@ -11,51 +12,66 @@ class RepairsController < ApplicationController
   end
   
   def create
-    @repair = @bike.repairs.build(repair_params)
-    respond_to do |format|
-      if @repair.save
-        format.html { 
-          flash[:success] = 'Repair was successfully created'
-          redirect_to bike_repairs_path(@bike)
-        }
-        format.json { render :show, status: :created, location: @repair}
-      else
-        format.html { render :new }
-        format.json { render json: @repair.errors, status: :unprocessable_entity }
+    if current_user_is_bike_owner
+      
+      @repair = @bike.repairs.build(repair_params)
+      respond_to do |format|
+        if @repair.save
+          format.html { 
+            flash[:success] = 'Repair was successfully created'
+            redirect_to bike_repairs_path(@bike)
+          }
+          format.json { render @repair, status: 200}
+        else
+          format.html { 
+            flash[:error] = 'Something going wrong, try again'
+            render :new 
+          }
+          format.json { render json: @repair.errors, status: 422 }
+        end
       end
+      
+    else
+      respond_error_not_owner
     end
   end
   
   def show
   end
   
-  def edit
-  end
-  
   def update
-    respond_to do |format|
-      if @repair.update(repair_params)
-        format.html { 
-          flash[:success] = 'Repair was successfully updated'
-          redirect_to bike_repairs_path(bike_id: @repair.bike_id)
-        }
-        format.json { render :show, status: :created, location: @repair}
-      else
-        format.html { render :edit }
-        format.json { render json: @repair.errors, status: :unprocessable_entity }
+    if current_user_is_bike_owner
+    
+      respond_to do |format|
+        if @repair.update(repair_params)
+          format.html { 
+            flash[:success] = 'Repair was successfully updated'
+            redirect_to bike_repairs_path(bike_id: @repair.bike_id)
+          }
+          format.json { render @repair, status: 200}
+        else
+          format.html { 
+            flash[:error] = 'Something going wrong, try again'
+            render :edit 
+          }
+          format.json { render json: @repair.errors, status: :unprocessable_entity }
+        end
       end
+    
+    else
+      respond_error_not_owner
     end
   end
   
   def destroy
-    respond_to do |format|
+    if current_user_is_bike_owner
       if @repair.destroy
-        format.html { 
-          flash[:success] = 'Repair was successfully deleted'
-          redirect_to bike_repairs_path(bike_id: @repair.bike_id)
-          }
-        format.json { head :no_content }
+        render json: { success: true, status: 200 }
+      else
+        render json: { errors: 'You have not credentials', status: 422 }, status: 422
       end
+    else
+      respond_error_not_owner
     end
   end
 
@@ -63,11 +79,15 @@ class RepairsController < ApplicationController
   private
 
   def set_bike
-    @bike = Bike.find_by_id(params[:bike_id])
+    @bike = Bike.find(params[:bike_id])
+    rescue ActiveRecord::RecordNotFound
+      render json: { errors: "Bike not found" }, status: 404    
   end
 
   def set_repair
-    @repair = Repair.find_by_id(params[:id])
+    @repair = Repair.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render json: { errors: "Repair not found" }, status: 404    
   end
   
   def repair_params

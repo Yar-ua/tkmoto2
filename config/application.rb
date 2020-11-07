@@ -17,7 +17,7 @@ module Tkmoto2
     # the framework and any gems in your application.
     config.time_zone = 'Kyiv'
     
-    config.middleware.use Rack::Cors do
+    config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*' 
         resource '*',

@@ -13,7 +13,6 @@ RSpec.describe User, type: :model do
 
   describe 'oil must have all important attributes' do
     it { expect(:name).to be}
-    it { expect(:nickname).to be}
     it { expect(:email).to be}
     it { expect(:password).to be}
     it { expect(:created_at).to be}

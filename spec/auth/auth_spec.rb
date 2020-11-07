@@ -29,10 +29,10 @@ RSpec.describe "Auth", :type => :request do
       expect(response.status).to eq(200)
     end
 
-    # it 'Resource forbidden, if user not authenticated' do
-    #   get secure_path
-    #   expect(response.status).to eq(401)
-    # end
+    it 'Resource forbidden, if user not authenticated' do
+      get secure_path
+      expect(response.status).to eq(401)
+    end
   end
 
   describe 'Testing registration: POST /auth' do

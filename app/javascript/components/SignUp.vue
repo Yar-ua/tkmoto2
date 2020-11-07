@@ -42,16 +42,17 @@
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
 
         <md-card-actions>
+          <app-back-button v-bind:is-sending="sending"></app-back-button>
           <md-button type="submit" class="md-primary" :disabled="sending">Create user</md-button>
         </md-card-actions>
       </md-card>
 
-      <md-snackbar :md-active.sync="userSaved">The user {{ lastUser }} was saved with success!</md-snackbar>
     </form>
   </div>
 </template>
 
 <script>
+  import BackButton from '../components/Back_Button'
   import { validationMixin } from 'vuelidate'
   import {
     required,
@@ -61,7 +62,10 @@
   } from 'vuelidate/lib/validators'
 
   export default {
-    name: 'FormValidation',
+    components: {
+      'app-back-button': BackButton
+    },
+    name: 'SignUp',
     mixins: [validationMixin],
     data: () => ({
       form: {
@@ -71,8 +75,7 @@
         passwordConfirmation: null
       },
       userSaved: false,
-      sending: false,
-      lastUser: null
+      sending: false
     }),
     validations: {
       form: {
@@ -105,8 +108,8 @@
       },
       saveUser () {
         this.sending = true
-        this.$store.dispatch('sign_up', 
-          {name: this.form.name, email: this.form.email, password: this.form.password, password_confirmation: this.form.passwordConfirmation})
+        var params = {name: this.form.name, email: this.form.email, password: this.form.password, password_confirmation: this.form.passwordConfirmation}
+        this.$store.dispatch('sign_up', params)
           .then(() => {
             this.hasError = false
             this.flashMessage.show({
@@ -114,7 +117,7 @@
               title: 'Success',
               message: 'You was successfully registred'
             })
-            this.$router.push({name: 'Home'})
+            this.$router.push({name: 'Bikes'})
           }).catch(err => {
             if (err.response.status !== 200) {
               this.hasError = true

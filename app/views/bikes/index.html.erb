@@ -1,15 +1,15 @@
 <h1>Bikes:</h1>
   <%= link_to 'Create new bike', new_bike_path, class: "btn btn-success btn-sm" %>
   <hr>
-  <div class="digg_pagination">
-    <%= will_paginate @bikes, renderer: BootstrapPagination::Rails %>
-  </div>
+  <!--<div class="digg_pagination">-->
+  <!--  %= will_paginate @bikes, renderer: BootstrapPagination::Rails %>-->
+  <!--</div>-->
   
   <% @bikes.each do |bike| %>
     <%= render 'bikes/bike', bike: bike %>
   <% end %>
   
-  <div class="digg_pagination">
-    <%= will_paginate @bikes, renderer: BootstrapPagination::Rails %>
-  </div>
+  <!--<div class="digg_pagination">-->
+  <!--  %= will_paginate @bikes, renderer: BootstrapPagination::Rails %>-->
+  <!--</div>-->
 

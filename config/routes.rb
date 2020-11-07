@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   root to: 'bikes#index'
 
   resources :bikes do
-  	resources :fuels, except: :show
-    resources :repairs
-    resources :oils, except: :show
-    resource :bike_configs, except: :destroy
+  	resources :fuels, except: :edit
+    resources :repairs, except: :edit
+    resources :oils, except: :edit
+    resource :bike_configs, except: [:edit, :destroy]
   end
 
   match 'about', to: 'home#about', via: [:get]

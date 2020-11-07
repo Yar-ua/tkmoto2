@@ -10,13 +10,13 @@ RSpec.describe OilsController, type: :routing do
       expect(get: "bikes/1/oils/new").to route_to("oils#new", bike_id: "1")
     end
 
-    # it "routes to #show" do
-    #   expect(get: "bikes/1/oils/10").to route_to("oils#show", bike_id: "1", id: "10")
-    # end
-
-    it "routes to #edit" do
-      expect(get: "bikes/1/oils/10/edit").to route_to("oils#edit", bike_id: "1", id: "10")
+    it "routes to #show" do
+      expect(get: "bikes/1/oils/10").to route_to("oils#show", bike_id: "1", id: "10")
     end
+
+    # it "routes to #edit" do
+    #   expect(get: "bikes/1/oils/10/edit").to route_to("oils#edit", bike_id: "1", id: "10")
+    # end
 
 
     it "routes to #create" do

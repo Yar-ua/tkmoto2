@@ -11,6 +11,7 @@
             </md-button>
             
             <span class="md-title">TKMoto</span>
+            <app-navlinks></app-navlinks>
           </div>
 
           <div class="md-toolbar-section-end">
@@ -20,9 +21,6 @@
           </div>
         </div>
 
-        <div class="md-toolbar-row">
-          <app-navlinks></app-navlinks>
-        </div>
       </md-app-toolbar>
 
       <md-app-drawer :md-active.sync="menuVisible">
@@ -30,12 +28,13 @@
           <app-navigation></app-navigation>
         </md-list>
       </md-app-drawer>
-
+      
       <md-app-content>
         
+        <p>{{ message }} :/ isAuth: {{ isAuth }} || user: {{ user }} -------</p>
         <app-flash></app-flash>
         <router-view/>
-
+        
       </md-app-content>
     </md-app>
   </div>
@@ -45,6 +44,8 @@
 </template>
 
 <script>
+
+import { mapState } from 'vuex'
 
 import Navigation from './components/Navigation'
 import NavLinks from './components/NavLinks'
@@ -65,9 +66,15 @@ export default {
     source: String
   },
   data: () => ({
-    message: "Hello Vue!",
+    message: "Debug info",
     menuVisible: false
-  })
+  }),
+  computed: {
+    ...mapState({
+      user: 'user'
+    }),
+    isAuth () { return this.$store.getters.isAuth }
+  },
 }
 </script>
 
