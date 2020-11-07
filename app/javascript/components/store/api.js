@@ -27,6 +27,11 @@ export default {
 
   // GET, POST /bikes/:bike_id/fuels (index, create fuels)
   oils: (bikeId) => ('/bikes/#{bike_id}' + '/oils.json').replace('#{bike_id}', bikeId),
+  // GET, PUT, DELETE /bikes/:bike_id/oils/:id (show, update, destroy oil)
+  oil: (bikeId, id) => ('/bikes/#{bike_id}' + '/oils/#{id}.json').replace('#{bike_id}', bikeId).replace('#{id}', id)
+
+
+
   // GET /bike/:bike_id/fuellast (show fuel item with the biggest odometer)
 //   bikeFuel: (bikeId) => (process.env.apiUrl + '/bikes/#{id}/fuellast').replace('#{id}', bikeId),
 

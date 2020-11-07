@@ -103,7 +103,6 @@
     name: 'FuelForm',
     mixins: [validationMixin],
     data: () => ({
-      // fitem: (this.item || null),
       fuelSaved: false,
       sending: false
     }),
@@ -193,12 +192,12 @@
               message: 'Fuel was successfully updated'
             })
             this.$router.push({name: 'FuelTable'})
-          }) //.catch(err => {
-            // if (err.response.status !== 200) {
-              // this.hasError = true
-            // }
-            // this.sending = false
-          // })        
+          }).catch(err => {
+            if (err.response.status !== 200) {
+              this.hasError = true
+            }
+            this.sending = false
+          })        
       },
 
       validateFuel (fuel_id) {
