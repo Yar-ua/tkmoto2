@@ -31,7 +31,7 @@ In pgadmin for connect to DB create server and use next settings:
 - password: /.. empty field ../
  
 
-Start build with rails server and use bot
+Start build with rails server and using webpack-dev-server (webpack-dev-server already added in docker-compose.yml as webpacker and added to 'dev' dependency)
 
 $ docker-compose up dev
 

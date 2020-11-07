@@ -52,7 +52,7 @@ export default {
       return axios.post(API.fuels(params.bikeId), params)
         .then(response => {
           if (response.status === 200) {
-            context.commit('updateAddItem', response.data.data)
+            context.commit('updateAddItem', response.data)
           }
         })
     },
@@ -69,7 +69,7 @@ export default {
       return axios.put(API.fuel(params.bikeId, params.id), params)
         .then(response => {
           if (response.status === 200) {
-            context.commit('updateFuelsList', response.data.data)
+            context.commit('updateFuelsList', response.data)
           }
         })
     },
@@ -80,16 +80,6 @@ export default {
             context.commit('removeItemFromFuelsList', params)
           }
         })
-    },
-    // fuellast (context, params) {
-    //   return axios.get(API.bikeFuel(params.id), '')
-    //     .then(response => {
-    //       try {
-    //         context.commit('setOdometer', response.data.data)
-    //       } catch (e) {
-    //         context.commit('setOdometer', 0)
-    //       }
-    //     })
-    // }
+    }
   }
 }
