@@ -6,7 +6,6 @@ export default {
   state: {
     addsList: 'bikes list',
     addItem: {},
-    config: {},
     loading: false
   },
 

@@ -13,8 +13,11 @@ import Bikes from '../bikes/Bikes'
 import BikesSheet from '../bikes/BikesSheet'
 import BikeForm from '../bikes/BikeForm'
 import BikeItem from '../bikes/BikeItem'
-import BikeConfigs from '../bikes/BikeConfigs'
 import BikeInfo from '../bikes/BikeInfo'
+
+import BikeConfigsSheet from '../bikes/BikeConfigsSheet'
+import BikeConfigs from '../bikes/BikeConfigs'
+import BikeConfigForm from '../bikes/BikeConfigForm'
 
 import FuelSheet from '../fuels/FuelSheet'
 import FuelTable from '../fuels/FuelTable'
@@ -143,9 +146,20 @@ export default new Router({
             },
             {
               path: 'settings',
-              name: 'BikeConfigs',
-              component: BikeConfigs
-            }
+              component: BikeConfigsSheet,
+              children: [
+                {
+                  path: '',
+                  name: 'BikeConfigs',
+                  component: BikeConfigs
+                },
+                {
+                  path: 'edit',
+                  name: 'BikeConfigForm',
+                  component: BikeConfigForm
+                }
+              ]
+            },
           ]
         }
       ]

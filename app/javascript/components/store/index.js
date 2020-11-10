@@ -5,6 +5,7 @@ import axios from 'axios'
 import API from './api'
 
 import errors from './flash/errors'
+import bikeConfig from './bikeConfig'
 import bike from './bike'
 import fuel from './fuel'
 import oil from './oil'
@@ -36,7 +37,7 @@ const Store = new Vuex.Store({
 
   modules: {
     errors,
-    // home,
+    bikeConfig,
     bike,
     fuel,
     // repair,
