@@ -4,10 +4,8 @@
   </div>
 </template>
 
-
 <script>
-
-export default {
-  name: 'OilSheet'
-}
+  export default {
+    name: 'BikeConfigsSheet'
+  }
 </script>

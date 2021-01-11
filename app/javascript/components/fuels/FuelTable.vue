@@ -83,7 +83,6 @@ export default {
     },
     confirmDelete () {
       if (confirm('Are You sure to delete fuel data?')) {
-        // var conf = prompt('Type "Yes" to confirm delete')
         if (prompt('Type "Yes" to confirm delete') == 'Yes') {
           return true
         } else {
