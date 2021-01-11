@@ -13,14 +13,19 @@ import Bikes from '../bikes/Bikes'
 import BikesSheet from '../bikes/BikesSheet'
 import BikeForm from '../bikes/BikeForm'
 import BikeItem from '../bikes/BikeItem'
-import BikeConfigs from '../bikes/BikeConfigs'
 import BikeInfo from '../bikes/BikeInfo'
+
+import BikeConfigsSheet from '../bikes/BikeConfigsSheet'
+import BikeConfigs from '../bikes/BikeConfigs'
+import BikeConfigForm from '../bikes/BikeConfigForm'
 
 import FuelSheet from '../fuels/FuelSheet'
 import FuelTable from '../fuels/FuelTable'
 import FuelForm from '../fuels/FuelForm'
 
 import OilSheet from '../oils/OilSheet'
+import OilTable from '../oils/OilTable'
+import OilForm from '../oils/OilForm'
 
 import store from '../store'
 
@@ -120,14 +125,41 @@ export default new Router({
             // oils CRUD
             {
               path: 'oils',
-              name: 'OilSheet',
-              component: OilSheet
+              component: OilSheet,
+              children: [
+                {
+                  path: '',
+                  name: 'OilTable',
+                  component: OilTable
+                },
+                {
+                  path: ':oil_id',
+                  name: 'OilForm',
+                  component: OilForm
+                },
+                {
+                  path: ':oil_id/edit',
+                  name: 'OilEdit',
+                  component: OilForm
+                }
+              ]
             },
             {
               path: 'settings',
-              name: 'BikeConfigs',
-              component: BikeConfigs
-            }
+              component: BikeConfigsSheet,
+              children: [
+                {
+                  path: '',
+                  name: 'BikeConfigs',
+                  component: BikeConfigs
+                },
+                {
+                  path: 'edit',
+                  name: 'BikeConfigForm',
+                  component: BikeConfigForm
+                }
+              ]
+            },
           ]
         }
       ]

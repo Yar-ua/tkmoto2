@@ -1,7 +1,14 @@
 <template>
   <md-card-actions md-alignment="space-between">
     <div>
-      <md-button>Settings</md-button>
+      <h5>bike configuration</h5>
+      <br/>
+      <p>Bike oil change period, km: {{ item.oil_change }}
+        <md-button class="md-primary" :to="{name: 'BikeConfigForm'}">
+          <i class="far fa-edit"></i>Edit value
+        </md-button>
+      </p>
+      <hr/>
       <md-button class="md-primary" @click="bikeEdit()">Edit bike</md-button>
       <md-button class="md-accent" @click="bikeDelete()">Delete bike</md-button>
     </div>
@@ -10,9 +17,18 @@
 
 
 <script>
+  import { mapState } from 'vuex'
   export default {
     name: 'BikeConfigs',
+    computed: {
+      ...mapState('bikeConfig', {
+        item: 'addItem'
+      })
+    },    
     methods: {
+      bikeConfigEdit () {
+        this.$router.push({ name: 'BikeConfigForm' })
+      },
       bikeEdit () {
         this.$router.push({ name: 'BikeEdit', params: {id: this.$route.params.id} })
       },
@@ -46,6 +62,9 @@
           }
         }
       }
-    }
+    },
+    created () {
+      this.$store.dispatch('bikeConfig/show', {id: this.$route.params.id})
+    }    
   }
 </script>
